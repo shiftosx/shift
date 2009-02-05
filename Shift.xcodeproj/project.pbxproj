@@ -38,10 +38,8 @@
 		ABB711CE0E5B268700E5513E /* ShiftAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB711CD0E5B268700E5513E /* ShiftAppDelegate.m */; };
 		ABC2410C0DF8BA750099E88E /* PreferenceWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC2410B0DF8BA750099E88E /* PreferenceWindow.m */; };
 		ABDDB84A0DFD94CF00D940FF /* NSWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDDB8490DFD94CF00D940FF /* NSWindow.m */; };
-		ABE2FD7A0DF6180B00E0BF6F /* MCPKit_bundled.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE2FD790DF6180B00E0BF6F /* MCPKit_bundled.framework */; };
 		ABE2FD7D0DF6182000E0BF6F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE2FD7C0DF6182000E0BF6F /* Sparkle.framework */; };
 		ABE2FEC50DF6183100E0BF6F /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = ABE2FD7C0DF6182000E0BF6F /* Sparkle.framework */; };
-		ABE2FEC60DF6183100E0BF6F /* MCPKit_bundled.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = ABE2FD790DF6180B00E0BF6F /* MCPKit_bundled.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,7 +50,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				ABE2FEC50DF6183100E0BF6F /* Sparkle.framework in CopyFiles */,
-				ABE2FEC60DF6183100E0BF6F /* MCPKit_bundled.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,7 +118,6 @@
 		ABC2410B0DF8BA750099E88E /* PreferenceWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferenceWindow.m; path = Classes/PreferenceWindow.m; sourceTree = "<group>"; };
 		ABDDB8480DFD94CF00D940FF /* NSWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSWindow.h; path = Classes/Categories/NSWindow.h; sourceTree = "<group>"; };
 		ABDDB8490DFD94CF00D940FF /* NSWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSWindow.m; path = Classes/Categories/NSWindow.m; sourceTree = "<group>"; };
-		ABE2FD790DF6180B00E0BF6F /* MCPKit_bundled.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MCPKit_bundled.framework; path = Frameworks/MCPKit_bundled.framework; sourceTree = "<group>"; };
 		ABE2FD7C0DF6182000E0BF6F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,7 +127,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				ABE2FD7A0DF6180B00E0BF6F /* MCPKit_bundled.framework in Frameworks */,
 				ABE2FD7D0DF6182000E0BF6F /* Sparkle.framework in Frameworks */,
 				AB2D57F60E00AE24003FE881 /* Security.framework in Frameworks */,
 			);
@@ -168,7 +163,6 @@
 			children = (
 				AB2D57F50E00AE24003FE881 /* Security.framework */,
 				ABE2FD7C0DF6182000E0BF6F /* Sparkle.framework */,
-				ABE2FD790DF6180B00E0BF6F /* MCPKit_bundled.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -433,7 +427,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
