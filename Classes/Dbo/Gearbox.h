@@ -30,8 +30,8 @@
 - (NSView *) gbAdvanced;
 
 //database querying functions
-- (NSArray *) listSchemas:(NSString)filter;
-- (NSArray *) listTables:(NSString)filter;
+- (NSArray *) listSchemas:(NSString *)filter;
+- (NSArray *) listTables:(NSString *)filter;
 - (NSArray *) query;
 - (NSString *) lastErrorMessage;
 
