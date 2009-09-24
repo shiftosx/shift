@@ -29,39 +29,44 @@
 		AB54F5940DE9FAAF00A5B233 /* ShiftWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB54F5920DE9FAAF00A5B233 /* ShiftWindowController.m */; };
 		AB54F5C80DEA0CA400A5B233 /* BaseNode.m in Sources */ = {isa = PBXBuildFile; fileRef = AB54F5C70DEA0CA400A5B233 /* BaseNode.m */; };
 		AB54F73A0DEA46AA00A5B233 /* database.png in Resources */ = {isa = PBXBuildFile; fileRef = AB54F7390DEA46AA00A5B233 /* database.png */; };
+		AB6044E81069A4A100EFCDB1 /* eject.png in Resources */ = {isa = PBXBuildFile; fileRef = AB6044E71069A4A100EFCDB1 /* eject.png */; };
+		AB6045381069C99600EFCDB1 /* eject_hot.png in Resources */ = {isa = PBXBuildFile; fileRef = AB6045371069C99600EFCDB1 /* eject_hot.png */; };
+		AB604593106B05EA00EFCDB1 /* ShiftErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AB604592106B05EA00EFCDB1 /* ShiftErrorHandler.m */; };
 		AB6F68160E11C56700ABD651 /* ConsoleView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6F68150E11C56700ABD651 /* ConsoleView.m */; };
+		AB7B12DB1067EFCF0015202F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7B12DA1067EFCF0015202F /* Sparkle.framework */; };
+		AB7B13221067F2110015202F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7B12DA1067EFCF0015202F /* Sparkle.framework */; };
 		AB918BC30E57D45700A3CC83 /* ShiftBundle.icns in Resources */ = {isa = PBXBuildFile; fileRef = AB918BC20E57D45700A3CC83 /* ShiftBundle.icns */; };
 		ABA054470E42331200A791E1 /* CenteredTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA054460E42331200A791E1 /* CenteredTextFieldCell.m */; };
-		ABA056040E4242D200A791E1 /* MySQL.gearbox in CopyFiles */ = {isa = PBXBuildFile; fileRef = ABA056030E4242D200A791E1 /* MySQL.gearbox */; };
-		ABA056900E4264E200A791E1 /* SQLite.gearbox in CopyFiles */ = {isa = PBXBuildFile; fileRef = ABA0568F0E4264E200A791E1 /* SQLite.gearbox */; };
+		ABA056040E4242D200A791E1 /* MySQL.gearbox in PlugIns */ = {isa = PBXBuildFile; fileRef = ABA056030E4242D200A791E1 /* MySQL.gearbox */; };
+		ABA056900E4264E200A791E1 /* SQLite.gearbox in PlugIns */ = {isa = PBXBuildFile; fileRef = ABA0568F0E4264E200A791E1 /* SQLite.gearbox */; };
 		ABB7119C0E5B16A800E5513E /* PreferenceWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB7119B0E5B16A800E5513E /* PreferenceWindowController.m */; };
 		ABB711CE0E5B268700E5513E /* ShiftAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB711CD0E5B268700E5513E /* ShiftAppDelegate.m */; };
 		ABC2410C0DF8BA750099E88E /* PreferenceWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC2410B0DF8BA750099E88E /* PreferenceWindow.m */; };
 		ABDDB84A0DFD94CF00D940FF /* NSWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDDB8490DFD94CF00D940FF /* NSWindow.m */; };
-		ABE2FD7D0DF6182000E0BF6F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE2FD7C0DF6182000E0BF6F /* Sparkle.framework */; };
-		ABE2FEC50DF6183100E0BF6F /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = ABE2FD7C0DF6182000E0BF6F /* Sparkle.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		434F11EF0DE912FD008073D5 /* CopyFiles */ = {
+		434F11EF0DE912FD008073D5 /* Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				ABE2FEC50DF6183100E0BF6F /* Sparkle.framework in CopyFiles */,
+				AB7B13221067F2110015202F /* Sparkle.framework in Frameworks */,
 			);
+			name = Frameworks;
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ABA056010E42429F00A791E1 /* CopyFiles */ = {
+		ABA056010E42429F00A791E1 /* PlugIns */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				ABA056900E4264E200A791E1 /* SQLite.gearbox in CopyFiles */,
-				ABA056040E4242D200A791E1 /* MySQL.gearbox in CopyFiles */,
+				ABA056900E4264E200A791E1 /* SQLite.gearbox in PlugIns */,
+				ABA056040E4242D200A791E1 /* MySQL.gearbox in PlugIns */,
 			);
+			name = PlugIns;
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -101,8 +106,13 @@
 		AB54F5C60DEA0CA400A5B233 /* BaseNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseNode.h; path = Classes/BaseNode.h; sourceTree = "<group>"; };
 		AB54F5C70DEA0CA400A5B233 /* BaseNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseNode.m; path = Classes/BaseNode.m; sourceTree = "<group>"; };
 		AB54F7390DEA46AA00A5B233 /* database.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = database.png; sourceTree = "<group>"; };
+		AB6044E71069A4A100EFCDB1 /* eject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eject.png; sourceTree = "<group>"; };
+		AB6045371069C99600EFCDB1 /* eject_hot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eject_hot.png; sourceTree = "<group>"; };
+		AB604591106B05EA00EFCDB1 /* ShiftErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftErrorHandler.h; path = Classes/ShiftErrorHandler.h; sourceTree = "<group>"; };
+		AB604592106B05EA00EFCDB1 /* ShiftErrorHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftErrorHandler.m; path = Classes/ShiftErrorHandler.m; sourceTree = "<group>"; };
 		AB6F68140E11C56700ABD651 /* ConsoleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsoleView.h; path = Classes/ConsoleView.h; sourceTree = "<group>"; };
 		AB6F68150E11C56700ABD651 /* ConsoleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConsoleView.m; path = Classes/ConsoleView.m; sourceTree = "<group>"; };
+		AB7B12DA1067EFCF0015202F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		AB918BC20E57D45700A3CC83 /* ShiftBundle.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ShiftBundle.icns; sourceTree = "<group>"; };
 		ABA054450E42331200A791E1 /* CenteredTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CenteredTextFieldCell.h; path = Classes/Interface/CenteredTextFieldCell.h; sourceTree = "<group>"; };
 		ABA054460E42331200A791E1 /* CenteredTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CenteredTextFieldCell.m; path = Classes/Interface/CenteredTextFieldCell.m; sourceTree = "<group>"; };
@@ -118,7 +128,6 @@
 		ABC2410B0DF8BA750099E88E /* PreferenceWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferenceWindow.m; path = Classes/PreferenceWindow.m; sourceTree = "<group>"; };
 		ABDDB8480DFD94CF00D940FF /* NSWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSWindow.h; path = Classes/Categories/NSWindow.h; sourceTree = "<group>"; };
 		ABDDB8490DFD94CF00D940FF /* NSWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSWindow.m; path = Classes/Categories/NSWindow.m; sourceTree = "<group>"; };
-		ABE2FD7C0DF6182000E0BF6F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,8 +135,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB7B12DB1067EFCF0015202F /* Sparkle.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				ABE2FD7D0DF6182000E0BF6F /* Sparkle.framework in Frameworks */,
 				AB2D57F60E00AE24003FE881 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -154,6 +163,8 @@
 				ABB711CD0E5B268700E5513E /* ShiftAppDelegate.m */,
 				AB54F5930DE9FAAF00A5B233 /* ShiftWindowController.h */,
 				AB54F5920DE9FAAF00A5B233 /* ShiftWindowController.m */,
+				AB604591106B05EA00EFCDB1 /* ShiftErrorHandler.h */,
+				AB604592106B05EA00EFCDB1 /* ShiftErrorHandler.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -162,8 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				AB2D57F50E00AE24003FE881 /* Security.framework */,
-				ABE2FD7C0DF6182000E0BF6F /* Sparkle.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				AB7B12DA1067EFCF0015202F /* Sparkle.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -241,6 +252,8 @@
 		AB4B7C2D0DE9056900CC7D07 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				AB6044E71069A4A100EFCDB1 /* eject.png */,
+				AB6045371069C99600EFCDB1 /* eject_hot.png */,
 				AB2D39170E621D7000BEACED /* Gradient.png */,
 				AB2D39180E621D7000BEACED /* ResizeControl.png */,
 				AB918BC20E57D45700A3CC83 /* ShiftBundle.icns */,
@@ -318,8 +331,8 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				434F11EF0DE912FD008073D5 /* CopyFiles */,
-				ABA056010E42429F00A791E1 /* CopyFiles */,
+				434F11EF0DE912FD008073D5 /* Frameworks */,
+				ABA056010E42429F00A791E1 /* PlugIns */,
 			);
 			buildRules = (
 			);
@@ -366,6 +379,8 @@
 				AB2D34DC0E5B9ECB00BEACED /* InfoPlist.strings in Resources */,
 				AB2D39190E621D7000BEACED /* Gradient.png in Resources */,
 				AB2D391A0E621D7000BEACED /* ResizeControl.png in Resources */,
+				AB6044E81069A4A100EFCDB1 /* eject.png in Resources */,
+				AB6045381069C99600EFCDB1 /* eject_hot.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +405,7 @@
 				ABB711CE0E5B268700E5513E /* ShiftAppDelegate.m in Sources */,
 				AB2D366D0E5DD1B100BEACED /* PreferenceServers.m in Sources */,
 				AB2D372F0E5E2DDF00BEACED /* PreferenceAdvanced.m in Sources */,
+				AB604593106B05EA00EFCDB1 /* ShiftErrorHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,12 +443,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					/Volumes/MCPKit_bin_3.0.1,
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -475,7 +490,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;

@@ -20,6 +20,8 @@
 #import "ConsoleView.h"
 #import "AboutBoxController.h"
 #import "PreferenceWindowController.h"
+#import "ShiftErrorHandler.h"
+
 
 @interface ShiftWindowController : NSWindowController {
 	IBOutlet NSOutlineView *serverOutline;
@@ -35,18 +37,28 @@
 	NSUserDefaults *prefs;
 	NSMutableArray *favorites;
 	BaseNode *root;
+	
+	NSMutableDictionary *connections;
+	
+	ShiftErrorHandler *errorHandler;
 }
 
 @property (retain) NSMutableArray * contents;
+@property (retain) NSMutableDictionary * connections;
 
 - (NSMutableArray*)contents;
 
+- (IBAction)disconnect:(id)sender;
 - (IBAction)toggleSourceItem:(id)sender;
 - (IBAction)toggleConsole:(id)sender;
+- (IBAction)reloadSchemas:(NSArray *)schemas forServerNode:(BaseNode *)node;
+- (IBAction)reloadTables:(NSArray *)tables forSchemaNode:(BaseNode *)node;
 
 - (IBAction)showAboutBox:(id)sender;
 - (IBAction)showPreferencesWindow:(id)sender;
 
 - (void)reloadServerList;
+
+- (id)gearboxForType:(NSString *)type;
 
 @end

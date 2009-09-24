@@ -52,12 +52,12 @@
 
 #pragma mark NSTableView dataSource methods
 
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
 	return [gearboxesTitles count];
 }
 
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
 	NSString *title = [gearboxesTitles objectAtIndex:rowIndex];
 	NSImage *icon = [[[gearboxes objectForKey:title] principalClass] gbIcon];

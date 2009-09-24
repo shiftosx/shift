@@ -17,22 +17,26 @@
 
 #import <Cocoa/Cocoa.h>
 
+
+
 @interface BaseNode : NSObject <NSCoding, NSCopying>
 {
 	NSString		* title;
 	NSString		* toolTip;
 	NSString		* type;
+	NSString        * uuid;
 	NSMutableArray	* children;
 	BOOL			  isLeaf;
-	NSImage			* nodeIcon; //not used right now, but could be used
+	NSImage			* image;
 }
 
 @property (retain) NSString        *title;
 @property (retain) NSString        *toolTip;
 @property (retain) NSString        *type;
 @property (retain) NSMutableArray  *children;
-@property (retain) NSImage         *nodeIcon;
+@property (retain) NSImage         *image;
 @property          BOOL             isLeaf;
+@property (retain) NSDictionary    *favorite;
 
 
 - (id)initLeaf;
@@ -49,6 +53,7 @@
 - (id)initWithDictionary:(NSDictionary*)dictionary;
 
 - (void)appendChild:(BaseNode*)child;
+- (void) insertChild:(BaseNode*)child atIndex:(NSUInteger)index;
 - (id)parentFromArray:(NSArray*)array;
 - (void)removeObjectFromChildren:(id)obj;
 - (NSArray*)descendants;

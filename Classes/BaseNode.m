@@ -23,8 +23,9 @@
 @synthesize toolTip;
 @synthesize type;
 @synthesize children;
-@synthesize nodeIcon;
+@synthesize image;
 @synthesize isLeaf;
+@synthesize favorite;
 
 // -------------------------------------------------------------------------------
 //	init:
@@ -53,13 +54,14 @@
 	return self;
 }
 
-- (id)initFromFavorite:(NSDictionary*)favorite
+- (id)initFromFavorite:(NSDictionary*)newFavorite
 {
 	if (self = [self init])
 	{
 		[self setType:@"server"];
-		[self setTitle:[favorite objectForKey:@"name"]];
-		[self setToolTip:[NSString stringWithFormat:@"%@%@",[favorite objectForKey:@"user"],[favorite objectForKey:@"host"]]];
+		[self setFavorite:[newFavorite copy]];
+		[self setTitle:[newFavorite objectForKey:@"name"]];
+		[self setToolTip:[NSString stringWithFormat:@"%@%@",[newFavorite objectForKey:@"user"],[newFavorite objectForKey:@"host"]]];
 		if ([[self title] isEqualToString:nil])
 			[self setTitle:[self toolTip]];
 		
@@ -115,6 +117,17 @@
 	return [[[self title] lowercaseString] compare:[[aNode title] lowercaseString]];
 }
 
+- (void)appendChild:(BaseNode*)child
+{
+	
+	[children addObject:child];
+}
+
+- (void) insertChild:(BaseNode*)child atIndex:(NSUInteger)index
+{
+	[children insertObject:child atIndex:index];
+}
+
 #pragma mark - Drag and Drop
 
 // -------------------------------------------------------------------------------
@@ -123,12 +136,6 @@
 - (BOOL)isDraggable
 {
 	return [type isEqualToString:@"server"];
-}
-
-- (void)appendChild:(BaseNode*)child
-{
-	
-	[children addObject:child];
 }
 
 // -------------------------------------------------------------------------------

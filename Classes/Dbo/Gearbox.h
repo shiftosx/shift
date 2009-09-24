@@ -15,6 +15,8 @@
  * or see <http://www.gnu.org/licenses/>.
  */
 
+#define GBInvalidQuery @"GBInvalidQuery"
+
 @protocol Gearbox
 
 // informative functions
@@ -30,12 +32,14 @@
 - (NSView *) gbAdvanced;
 
 //database querying functions
+- (void) selectSchema:(NSString *)schema;
 - (NSArray *) listSchemas:(NSString *)filter;
 - (NSArray *) listTables:(NSString *)filter;
-- (NSArray *) query;
+- (NSArray *) query:(NSString *)query;
 - (NSString *) lastErrorMessage;
 
 //connection functions
+- (BOOL) isConnected;
 - (BOOL) connect:(NSDictionary *)favorite;
 - (void) disconnect;
 

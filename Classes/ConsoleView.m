@@ -81,7 +81,6 @@
 //consoleAction - sent on enter/return in the console input field
 -(IBAction)consoleAction:(id)sender
 {
-	NSLog([input stringValue]);
 	NSString *inputString = [[input stringValue] stringByAppendingString:@"\n"];
 	NSAttributedString *consoleInput = [[NSAttributedString alloc] initWithString:inputString attributes:inputAttributes];
 	NSAttributedString *response;

@@ -158,17 +158,23 @@
 //saveFavorite
 - (IBAction) saveFavorite:(id)sender
 {
+	NSDictionary *editorData;
 	NSMutableDictionary *favorite;
 	
 	// Validate requirements
 	// Would be nice to add in a check for valid connection and pop up a notice if it fails, a'la apple mail
-	favorite = [NSMutableDictionary dictionaryWithDictionary:[dboSource gbEditorAsDictionary]];
-	if (favorite == nil)
+	editorData = [dboSource gbEditorAsDictionary];
+	if (editorData == nil)
 		return;
+
+	favorite = [NSMutableDictionary dictionaryWithDictionary:editorData];
 	
 	NSString *password = [favorite objectForKey:@"password"];
 	if ([favorite objectForKey:@"name"] == nil)
 		[favorite setObject:[@"Favorite " stringByAppendingFormat:@"%d",[favorites count]+1] forKey:@"name"];
+	
+	if ([favorite objectForKey:@"uuid"] == nil)
+		[favorite setObject:[[NSProcessInfo processInfo] globallyUniqueString] forKey:@"uuid"];
 
 	[favorite setObject:[dboTypes titleOfSelectedItem] forKey:@"type"];
 
@@ -225,12 +231,12 @@
 
 #pragma mark NSTableView dataSource methods
 
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
 	return [favorites count];
 }
 
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
 	return [[favorites objectAtIndex:rowIndex] objectForKey:[aTableColumn identifier]];
 }
@@ -254,7 +260,7 @@
     return YES;
 }
 
-- (NSDragOperation)tableView:(NSTableView*)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)op
+- (NSDragOperation)tableView:(NSTableView*)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)op
 {
     NSPasteboard* pboard = [info draggingPasteboard];
     if ([pboard dataForType:FavoritesTableRow] && op == NSTableViewDropAbove)
@@ -263,7 +269,7 @@
 		return NSDragOperationNone;
 }
 
-- (BOOL)tableView:(NSTableView *)aTableView acceptDrop:(id <NSDraggingInfo>)info row:(int)row dropOperation:(NSTableViewDropOperation)operation
+- (BOOL)tableView:(NSTableView *)aTableView acceptDrop:(id <NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation
 {
     NSPasteboard* pboard = [info draggingPasteboard];
     NSData* rowData = [pboard dataForType:FavoritesTableRow];
