@@ -17,6 +17,12 @@
 
 #define GBInvalidQuery @"GBInvalidQuery"
 
+#define GBFeatureTable          @"GBFeatureTable"
+#define GBFeatureView           @"GBFeatureView"
+#define GBFeatureStoredProc     @"GBFeatureStoredProc"
+#define GBFeatureFunction       @"GBFeatureFunction"
+#define GBFeatureTrigger        @"GBFeatureTrigger"
+
 @protocol Gearbox
 
 // informative functions
@@ -31,10 +37,17 @@
 //advanced editor functions
 - (NSView *) gbAdvanced;
 
+//gb features
+- (NSArray *) gbFeatures;
+
 //database querying functions
 - (void) selectSchema:(NSString *)schema;
 - (NSArray *) listSchemas:(NSString *)filter;
 - (NSArray *) listTables:(NSString *)filter;
+- (NSArray *) listViews:(NSString *)filter;
+- (NSArray *) listStoredProcs:(NSString *)filter;
+- (NSArray *) listFunctions:(NSString *)filter;
+- (NSArray *) listTriggers:(NSString *)filter;
 - (NSArray *) query:(NSString *)query;
 - (NSString *) lastErrorMessage;
 

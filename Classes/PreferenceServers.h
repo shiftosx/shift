@@ -17,7 +17,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "KeyChain.h"
-#import "ShiftWindowController.h"
+#import "ShiftOutlineView.h"
 
 @interface PreferenceServers : NSTableView {
 	//favorites
@@ -37,7 +37,7 @@
 	id dboSource;
 }
 
-- (ShiftWindowController *) mainWindowController;
+- (ShiftOutlineView *) mainWindowController;
 
 //favorites methods
 - (void) loadFavoriteEditor:(NSDictionary *)favorite;

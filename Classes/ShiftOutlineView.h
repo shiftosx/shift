@@ -16,13 +16,25 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "Gearbox.h"
+#import "ShiftOutlineNode.h"
+#import "ShiftDatabaseConnections.h"
 
-
-@interface ShiftErrorHandler : NSObject {
-
+@interface ShiftOutlineView : NSOutlineView {
+	NSMutableArray *contents;
+	ShiftOutlineNode *root;
 }
 
-- (void) invalidQuery:(NSNotification *)notification;
+@property (retain) NSMutableArray * contents;
+@property (readonly) ShiftDatabaseConnections *connections;
 
+- (NSArray *)filterNodeArray:(NSMutableArray *)nodeArray withSource:(NSArray *)source;
+- (void)reloadSchemas:(NSArray *)schemas forServerNode:(ShiftOutlineNode *)node;
+- (void)reloadStrings:(NSArray *)strings forSchemaNode:(ShiftOutlineNode *)node withType:(NSString *)type;
+- (void)reloadServerList:(NSArray *)favorites;
+
+- (IBAction)disconnect:(id)sender;
+
+- (void)toggleSourceItem:(id)sender;
+
+- (ShiftOutlineNode *) findServerNodeFor:(ShiftOutlineNode *)node;
 @end

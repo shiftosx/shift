@@ -22,10 +22,14 @@
 @implementation ShiftAppDelegate
 
 @synthesize gearboxes;
+@synthesize errorHandler;
+@synthesize connections;
 
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification
 {
 	[self reloadGearboxes];
+	errorHandler = [[[ShiftErrorHandler alloc] init] retain];
+	connections = [[[ShiftDatabaseConnections alloc] init] retain];
 }
 
 - (void) reloadGearboxes
@@ -43,5 +47,12 @@
 	[bundleDictionary release];
 }
 
+- (id)gearboxForType:(NSString *)type
+{
+	NSBundle *bundle = [[self gearboxes] objectForKey:type];
+	id gearbox = [[[bundle principalClass] alloc] init];
+	[[NSNotificationCenter defaultCenter] addObserver:errorHandler selector:@selector(invalidQuery:) name:GBInvalidQuery object:gearbox];
+	return gearbox;
+}
 
 @end

@@ -27,11 +27,18 @@
 		AB2D57F60E00AE24003FE881 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2D57F50E00AE24003FE881 /* Security.framework */; };
 		AB4B7C2F0DE9056900CC7D07 /* Shift.icns in Resources */ = {isa = PBXBuildFile; fileRef = AB4B7C2E0DE9056900CC7D07 /* Shift.icns */; };
 		AB54F5940DE9FAAF00A5B233 /* ShiftWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB54F5920DE9FAAF00A5B233 /* ShiftWindowController.m */; };
-		AB54F5C80DEA0CA400A5B233 /* BaseNode.m in Sources */ = {isa = PBXBuildFile; fileRef = AB54F5C70DEA0CA400A5B233 /* BaseNode.m */; };
+		AB54F5C80DEA0CA400A5B233 /* ShiftOutlineNode.m in Sources */ = {isa = PBXBuildFile; fileRef = AB54F5C70DEA0CA400A5B233 /* ShiftOutlineNode.m */; };
 		AB54F73A0DEA46AA00A5B233 /* database.png in Resources */ = {isa = PBXBuildFile; fileRef = AB54F7390DEA46AA00A5B233 /* database.png */; };
 		AB6044E81069A4A100EFCDB1 /* eject.png in Resources */ = {isa = PBXBuildFile; fileRef = AB6044E71069A4A100EFCDB1 /* eject.png */; };
 		AB6045381069C99600EFCDB1 /* eject_hot.png in Resources */ = {isa = PBXBuildFile; fileRef = AB6045371069C99600EFCDB1 /* eject_hot.png */; };
 		AB604593106B05EA00EFCDB1 /* ShiftErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = AB604592106B05EA00EFCDB1 /* ShiftErrorHandler.m */; };
+		AB60465B106BE68100EFCDB1 /* ShiftOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB60465A106BE68100EFCDB1 /* ShiftOutlineView.m */; };
+		AB604661106BF1DB00EFCDB1 /* ShiftDatabaseConnections.m in Sources */ = {isa = PBXBuildFile; fileRef = AB604660106BF1DB00EFCDB1 /* ShiftDatabaseConnections.m */; };
+		AB6048B7106DA59E00EFCDB1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB6048B6106DA59E00EFCDB1 /* Localizable.strings */; };
+		AB60497410704A6E00EFCDB1 /* ImageAndTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB60497310704A6E00EFCDB1 /* ImageAndTextCell.m */; };
+		AB604A221071169200EFCDB1 /* table.png in Resources */ = {isa = PBXBuildFile; fileRef = AB604A211071169200EFCDB1 /* table.png */; };
+		AB604A5C10714FFE00EFCDB1 /* function.png in Resources */ = {isa = PBXBuildFile; fileRef = AB604A5B10714FFE00EFCDB1 /* function.png */; };
+		AB604A841071577700EFCDB1 /* view.png in Resources */ = {isa = PBXBuildFile; fileRef = AB604A831071577700EFCDB1 /* view.png */; };
 		AB6F68160E11C56700ABD651 /* ConsoleView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6F68150E11C56700ABD651 /* ConsoleView.m */; };
 		AB7B12DB1067EFCF0015202F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7B12DA1067EFCF0015202F /* Sparkle.framework */; };
 		AB7B13221067F2110015202F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7B12DA1067EFCF0015202F /* Sparkle.framework */; };
@@ -103,13 +110,23 @@
 		AB4B7C2E0DE9056900CC7D07 /* Shift.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Shift.icns; sourceTree = "<group>"; };
 		AB54F5920DE9FAAF00A5B233 /* ShiftWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftWindowController.m; path = Classes/ShiftWindowController.m; sourceTree = "<group>"; };
 		AB54F5930DE9FAAF00A5B233 /* ShiftWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftWindowController.h; path = Classes/ShiftWindowController.h; sourceTree = "<group>"; };
-		AB54F5C60DEA0CA400A5B233 /* BaseNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseNode.h; path = Classes/BaseNode.h; sourceTree = "<group>"; };
-		AB54F5C70DEA0CA400A5B233 /* BaseNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseNode.m; path = Classes/BaseNode.m; sourceTree = "<group>"; };
+		AB54F5C60DEA0CA400A5B233 /* ShiftOutlineNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftOutlineNode.h; path = Classes/ShiftOutlineNode.h; sourceTree = "<group>"; };
+		AB54F5C70DEA0CA400A5B233 /* ShiftOutlineNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftOutlineNode.m; path = Classes/ShiftOutlineNode.m; sourceTree = "<group>"; };
 		AB54F7390DEA46AA00A5B233 /* database.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = database.png; sourceTree = "<group>"; };
 		AB6044E71069A4A100EFCDB1 /* eject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eject.png; sourceTree = "<group>"; };
 		AB6045371069C99600EFCDB1 /* eject_hot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eject_hot.png; sourceTree = "<group>"; };
 		AB604591106B05EA00EFCDB1 /* ShiftErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftErrorHandler.h; path = Classes/ShiftErrorHandler.h; sourceTree = "<group>"; };
 		AB604592106B05EA00EFCDB1 /* ShiftErrorHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftErrorHandler.m; path = Classes/ShiftErrorHandler.m; sourceTree = "<group>"; };
+		AB604659106BE68100EFCDB1 /* ShiftOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftOutlineView.h; path = Classes/ShiftOutlineView.h; sourceTree = "<group>"; };
+		AB60465A106BE68100EFCDB1 /* ShiftOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftOutlineView.m; path = Classes/ShiftOutlineView.m; sourceTree = "<group>"; };
+		AB60465F106BF1DB00EFCDB1 /* ShiftDatabaseConnections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftDatabaseConnections.h; path = Classes/ShiftDatabaseConnections.h; sourceTree = "<group>"; };
+		AB604660106BF1DB00EFCDB1 /* ShiftDatabaseConnections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftDatabaseConnections.m; path = Classes/ShiftDatabaseConnections.m; sourceTree = "<group>"; };
+		AB6048B3106DA59000EFCDB1 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = Resources/XIB/English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AB60497210704A6E00EFCDB1 /* ImageAndTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageAndTextCell.h; path = Classes/Interface/ImageAndTextCell.h; sourceTree = "<group>"; };
+		AB60497310704A6E00EFCDB1 /* ImageAndTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageAndTextCell.m; path = Classes/Interface/ImageAndTextCell.m; sourceTree = "<group>"; };
+		AB604A211071169200EFCDB1 /* table.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = table.png; sourceTree = "<group>"; };
+		AB604A5B10714FFE00EFCDB1 /* function.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = function.png; sourceTree = "<group>"; };
+		AB604A831071577700EFCDB1 /* view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view.png; sourceTree = "<group>"; };
 		AB6F68140E11C56700ABD651 /* ConsoleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsoleView.h; path = Classes/ConsoleView.h; sourceTree = "<group>"; };
 		AB6F68150E11C56700ABD651 /* ConsoleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConsoleView.m; path = Classes/ConsoleView.m; sourceTree = "<group>"; };
 		AB7B12DA1067EFCF0015202F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
@@ -153,8 +170,6 @@
 				AB6B51DE0DFE170200D35E8E /* Utilities */,
 				43603CFB0E04D59E0024293E /* AboutBoxController.h */,
 				43603CFC0E04D59E0024293E /* AboutBoxController.m */,
-				AB54F5C60DEA0CA400A5B233 /* BaseNode.h */,
-				AB54F5C70DEA0CA400A5B233 /* BaseNode.m */,
 				AB6F68140E11C56700ABD651 /* ConsoleView.h */,
 				AB6F68150E11C56700ABD651 /* ConsoleView.m */,
 				AB2D57EA0E00ACD7003FE881 /* KeyChain.h */,
@@ -165,6 +180,12 @@
 				AB54F5920DE9FAAF00A5B233 /* ShiftWindowController.m */,
 				AB604591106B05EA00EFCDB1 /* ShiftErrorHandler.h */,
 				AB604592106B05EA00EFCDB1 /* ShiftErrorHandler.m */,
+				AB54F5C60DEA0CA400A5B233 /* ShiftOutlineNode.h */,
+				AB54F5C70DEA0CA400A5B233 /* ShiftOutlineNode.m */,
+				AB604659106BE68100EFCDB1 /* ShiftOutlineView.h */,
+				AB60465A106BE68100EFCDB1 /* ShiftOutlineView.m */,
+				AB60465F106BF1DB00EFCDB1 /* ShiftDatabaseConnections.h */,
+				AB604660106BF1DB00EFCDB1 /* ShiftDatabaseConnections.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -223,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				AB4B7C2D0DE9056900CC7D07 /* Images */,
+				AB6048B6106DA59E00EFCDB1 /* Localizable.strings */,
 				ABB7132D0E5B5E9E00E5513E /* XIB */,
 				43603DE60E04E1D50024293E /* copyright.rtf */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -245,6 +267,8 @@
 			children = (
 				ABA054450E42331200A791E1 /* CenteredTextFieldCell.h */,
 				ABA054460E42331200A791E1 /* CenteredTextFieldCell.m */,
+				AB60497210704A6E00EFCDB1 /* ImageAndTextCell.h */,
+				AB60497310704A6E00EFCDB1 /* ImageAndTextCell.m */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -252,20 +276,31 @@
 		AB4B7C2D0DE9056900CC7D07 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				AB604A871071581400EFCDB1 /* Icons */,
+				AB604A831071577700EFCDB1 /* view.png */,
+				AB604A5B10714FFE00EFCDB1 /* function.png */,
+				AB604A211071169200EFCDB1 /* table.png */,
 				AB6044E71069A4A100EFCDB1 /* eject.png */,
 				AB6045371069C99600EFCDB1 /* eject_hot.png */,
 				AB2D39170E621D7000BEACED /* Gradient.png */,
 				AB2D39180E621D7000BEACED /* ResizeControl.png */,
-				AB918BC20E57D45700A3CC83 /* ShiftBundle.icns */,
 				AB12F9A10DFB004F00348CC4 /* updates.png */,
 				AB54F7390DEA46AA00A5B233 /* database.png */,
 				434F12030DE919B1008073D5 /* Play.tiff */,
 				434F12010DE91943008073D5 /* Terminal.tiff */,
-				AB4B7C2E0DE9056900CC7D07 /* Shift.icns */,
 			);
 			includeInIndex = 1;
 			name = Images;
 			path = Resources/Images;
+			sourceTree = "<group>";
+		};
+		AB604A871071581400EFCDB1 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				AB4B7C2E0DE9056900CC7D07 /* Shift.icns */,
+				AB918BC20E57D45700A3CC83 /* ShiftBundle.icns */,
+			);
+			name = Icons;
 			sourceTree = "<group>";
 		};
 		AB6B51DE0DFE170200D35E8E /* Utilities */ = {
@@ -381,6 +416,10 @@
 				AB2D391A0E621D7000BEACED /* ResizeControl.png in Resources */,
 				AB6044E81069A4A100EFCDB1 /* eject.png in Resources */,
 				AB6045381069C99600EFCDB1 /* eject_hot.png in Resources */,
+				AB6048B7106DA59E00EFCDB1 /* Localizable.strings in Resources */,
+				AB604A221071169200EFCDB1 /* table.png in Resources */,
+				AB604A5C10714FFE00EFCDB1 /* function.png in Resources */,
+				AB604A841071577700EFCDB1 /* view.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,7 +432,7 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				AB54F5940DE9FAAF00A5B233 /* ShiftWindowController.m in Sources */,
-				AB54F5C80DEA0CA400A5B233 /* BaseNode.m in Sources */,
+				AB54F5C80DEA0CA400A5B233 /* ShiftOutlineNode.m in Sources */,
 				ABC2410C0DF8BA750099E88E /* PreferenceWindow.m in Sources */,
 				AB12F8B40DF99BFD00348CC4 /* PreferenceTabs.m in Sources */,
 				ABDDB84A0DFD94CF00D940FF /* NSWindow.m in Sources */,
@@ -406,6 +445,9 @@
 				AB2D366D0E5DD1B100BEACED /* PreferenceServers.m in Sources */,
 				AB2D372F0E5E2DDF00BEACED /* PreferenceAdvanced.m in Sources */,
 				AB604593106B05EA00EFCDB1 /* ShiftErrorHandler.m in Sources */,
+				AB60465B106BE68100EFCDB1 /* ShiftOutlineView.m in Sources */,
+				AB604661106BF1DB00EFCDB1 /* ShiftDatabaseConnections.m in Sources */,
+				AB60497410704A6E00EFCDB1 /* ImageAndTextCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +476,14 @@
 				AB2D34DB0E5B9ECB00BEACED /* English */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		AB6048B6106DA59E00EFCDB1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB6048B3106DA59000EFCDB1 /* English */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

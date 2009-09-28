@@ -17,14 +17,25 @@
 
 #import <Cocoa/Cocoa.h>
 
+#define ShiftOutlineRootNode           @"ShiftOutlineRootNode"
+#define ShiftOutlineServerNode         @"ShiftOutlineServerNode"
+
+#define ShiftOutlineSchemaNode         @"ShiftOutlineSchemaNode"
+
+#define ShiftOutlineFeatureNode        @"ShiftOutlineFeatureNode"
+
+#define ShiftOutlineTableNode          @"ShiftOutlineTableNode"
+#define ShiftOutlineViewNode           @"ShiftOutlineViewNode"
+#define ShiftOutlineStoredProcNode     @"ShiftOutlineStoredProcNode"
+#define ShiftOutlineFunctionNode       @"ShiftOutlineFunctionNode"
+#define ShiftOutlineTriggerNode        @"ShiftOutlineTriggerNode"
 
 
-@interface BaseNode : NSObject <NSCoding, NSCopying>
+@interface ShiftOutlineNode : NSObject <NSCoding, NSCopying>
 {
 	NSString		* title;
 	NSString		* toolTip;
 	NSString		* type;
-	NSString        * uuid;
 	NSMutableArray	* children;
 	BOOL			  isLeaf;
 	NSImage			* image;
@@ -36,7 +47,7 @@
 @property (retain) NSMutableArray  *children;
 @property (retain) NSImage         *image;
 @property          BOOL             isLeaf;
-@property (retain) NSDictionary    *favorite;
+@property (retain) NSDictionary    *info;
 
 
 - (id)initLeaf;
@@ -45,15 +56,15 @@
 
 - (BOOL)isDraggable;
 
-- (NSComparisonResult)compare:(BaseNode*)aNode;
+- (NSComparisonResult)compare:(ShiftOutlineNode *)aNode;
 
 - (NSArray*)mutableKeys;
 
 - (NSDictionary*)dictionaryRepresentation;
 - (id)initWithDictionary:(NSDictionary*)dictionary;
 
-- (void)appendChild:(BaseNode*)child;
-- (void) insertChild:(BaseNode*)child atIndex:(NSUInteger)index;
+- (void)appendChild:(ShiftOutlineNode *)child;
+- (void) insertChild:(ShiftOutlineNode *)child atIndex:(NSUInteger)index;
 - (id)parentFromArray:(NSArray*)array;
 - (void)removeObjectFromChildren:(id)obj;
 - (NSArray*)descendants;

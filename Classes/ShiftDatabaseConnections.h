@@ -19,10 +19,17 @@
 #import "Gearbox.h"
 
 
-@interface ShiftErrorHandler : NSObject {
-
+@interface ShiftDatabaseConnections : NSObject {
+	NSMutableDictionary *connections;
 }
 
-- (void) invalidQuery:(NSNotification *)notification;
+@property (retain) NSMutableDictionary * connections;
+
+- (id<Gearbox>)connect:(NSDictionary *)connection;
+- (void)disconnect:(id)connection;
+
+- (id<Gearbox>)gearboxForConnection:(NSDictionary *)connection;
+- (id<Gearbox>)gearboxForUUID:(NSString *)uuid;
+
 
 @end

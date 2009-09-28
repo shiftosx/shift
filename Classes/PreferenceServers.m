@@ -19,8 +19,9 @@
 
 #import "PreferenceServers.h"
 #import "ShiftAppDelegate.h"
+#import "ShiftWindowController.h"
 #import "Gearbox.h"
-#import "BaseNode.h"
+#import "ShiftOutlineNode.h"
 #import "NSWindow.h"
 
 @implementation PreferenceServers
@@ -47,8 +48,8 @@
 //}
 
 
-- (ShiftWindowController *) mainWindowController{
-	return [[NSApp mainWindow] windowController];
+- (ShiftOutlineView *) mainWindowController{
+	return [(ShiftWindowController *)[[NSApp mainWindow] windowController] serverOutline];
 }
 
 //awakeFromNib
@@ -150,7 +151,7 @@
 	[self reloadData];
 	
 	//refresh the source list in the main window
-	[[self mainWindowController] reloadServerList];
+	[[self mainWindowController] reloadServerList:favorites];
 	
 	
 }
@@ -193,7 +194,7 @@
 	}else{
 		//append the new favorite
 		[favorites addObject:favorite];
-		[[[self mainWindowController] contents] addObject:[[BaseNode alloc] initFromFavorite:favorite]];
+		[[[self mainWindowController] contents] addObject:[[ShiftOutlineNode alloc] initFromFavorite:favorite]];
 	}
 	
 	//save the new favorites list
@@ -204,7 +205,7 @@
 	[self reloadData];
 	
 	//refresh the source list in the main window
-	[[self mainWindowController] reloadServerList];
+	[[self mainWindowController] reloadServerList:favorites];
 	
     [NSApp endSheet:favoritesEditorSheet];
     [favoritesEditorSheet orderOut:nil];
@@ -294,7 +295,7 @@
 	[self reloadData];
 	
 	//refresh the source list in the main window
-	[[self mainWindowController] reloadServerList];
+	[[self mainWindowController] reloadServerList:favorites];
 	
 	return YES;
 }

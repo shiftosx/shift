@@ -19,13 +19,9 @@
 #import "ShiftAppDelegate.h"
 #import "Gearbox.h"
 
-#define OutlineTitleColumn @"Title"
-#define OutlineImageColumn @"Image"
-
 @implementation ShiftWindowController
 
-@synthesize contents;
-@synthesize connections;
+@synthesize serverOutline;
 
 -(id)initWithWindow:(NSWindow *)window
 {
@@ -35,14 +31,8 @@
 		prefs = [[NSUserDefaults standardUserDefaults] retain];
 		favorites = [[NSMutableArray alloc] initWithArray:[prefs objectForKey:@"favorites"]];
 		
-		contents = [[NSMutableArray alloc] init];
-		connections = [[NSMutableDictionary alloc] init];
-		root = [[BaseNode alloc] initLeaf];
-		[root setTitle:@"Servers"];
-		[root setType:@"root"];
 	
 		serverImage = [NSImage imageNamed:@"database.png"];
-		errorHandler = [[[ShiftErrorHandler alloc] init] retain];
 	}	
 	return self;
 }
@@ -52,11 +42,7 @@
 // -------------------------------------------------------------------------------
 - (void)dealloc
 {
-	[contents release];
-	[connections release];
 	[favorites release];
-	[root release];
-	[errorHandler release];
 
 	[super dealloc];
 }
@@ -81,231 +67,8 @@
 	}	
 
 	//source view
-	[serverOutline setTarget:self];
-	[serverOutline setDoubleAction:@selector(toggleSourceItem:)];
-	
-	[self reloadServerList];
+	[serverOutline reloadServerList:[prefs objectForKey:@"favorites"]];
 }
-
-//toggleSourceItem - serverOutline's double click handler
-- (IBAction)toggleSourceItem:(id)sender{
-	id item = [serverOutline itemAtRow:[serverOutline clickedRow]];
-	if (![serverOutline isExpandable:item])
-		return;
-	
-	if ([serverOutline isItemExpanded:item])
-		[serverOutline collapseItem:item];
-	else
-		[serverOutline expandItem:item];
-}
-
-//reloadSchemas: forServerNode: needs to be smarter.... this is just to get things moving
-- (IBAction)reloadSchemas:(NSArray *)schemas forServerNode:(BaseNode *)node
-{
-	NSMutableArray *children = [node children];
-	NSMutableArray *titles = [NSMutableArray array];
-	for (int i = 0; i < [children count]; i++)
-	{
-		BaseNode *node = [children objectAtIndex:i];
-		if (![schemas containsObject:[node title]]) {
-			[children removeObjectAtIndex:i];
-			--i;
-		}else
-			[titles addObject:[node title]];
-	}
-	
-	for (int i = 0; i < [schemas count]; i++) {
-		NSString *schema = [schemas objectAtIndex:i];
-		NSUInteger index = [titles indexOfObject:schema];
-		if (index == NSNotFound)
-			[node insertChild:[[BaseNode alloc] initWithTitle:schema andType:@"schema"] atIndex:i];
-	}
-}
-
-//reloadSchemas: forServerNode: needs to be smarter.... this is just to get things moving
-- (IBAction)reloadTables:(NSArray *)tables forSchemaNode:(BaseNode *)node
-{
-	NSMutableArray *children = [node children];
-	NSMutableArray *titles = [NSMutableArray array];
-	for (int i = 0; i < [children count]; i++)
-	{
-		BaseNode *node = [children objectAtIndex:i];
-		if (![tables containsObject:[node title]]) {
-			[children removeObjectAtIndex:i];
-			--i;
-		}else
-			[titles addObject:[node title]];
-	}
-	
-	for (int i = 0; i < [tables count]; i++) {
-		NSString *table = [tables objectAtIndex:i];
-		NSUInteger index = [titles indexOfObject:table];
-		if (index == NSNotFound){
-			BaseNode *tableNode = [[BaseNode alloc] initWithTitle:table andType:@"table"];
-			[tableNode setIsLeaf:YES];
-			[node insertChild:tableNode atIndex:i];
-		}
-		
-	}
-}
-
-//reloadServerList
-//called from the favorites editor right now
-//will probably get more complex as the app expands
-- (void)reloadServerList
-{
-	favorites = [[NSMutableArray alloc] initWithArray:[prefs objectForKey:@"favorites"]];
-	if ([contents count] == 0){
-		[contents addObject:root];
-		//this should really be optimized to just change titles where they need to be changed
-		//remove deleted itmes, and add new items, perhaps favorites should have a unique id with them that makes tracking changes easier?
-		//that will allow the list to preserve it's expanded states
-		for (int i=0; i<[favorites count]; i++) {
-			[contents addObject:[[BaseNode alloc] initFromFavorite:[favorites objectAtIndex:i]]];
-		}
-	}
-	[serverOutline reloadData];
-}
-
-- (IBAction)disconnect:(id)sender
-{
-	id item = [sender itemAtRow:[sender clickedRow]];
-	id<Gearbox> dboSource = [connections objectForKey:[[item favorite] objectForKey:@"uuid"]];
-	if (dboSource && [dboSource isConnected]) {
-		[dboSource disconnect];
-		[sender collapseItem:item];
-	}
-
-}
-
-#pragma mark - NSOutlineViewDataSource methods
-
-//outlineView: numberOfChildrenOfItem:
-- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
-{
-    return (item == nil) ? [contents count] : [[item children] count];
-}
-
-//outlineView: isItemExpandable
-- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
-{
-    return ![item isLeaf];
-}
-
-//outlineView: child: ofItem:
-- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
-{
-	// this is probably the wrong place to init the server items for the source view
-	// for the most part this code is just a buildable start of transitioning from using the
-	// NSTreeController to using a proper data source
-	if (item == nil){
-		return [contents objectAtIndex:index];
-	}else
-		return [[item children] objectAtIndex:index];
-}
-
-//outlineView: objectValueForTableColumn: byItem:
-- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
-{
-	if ([[tableColumn identifier] isEqual:OutlineTitleColumn]) {
-		return [item title];
-	}else {
-		return [NSNumber numberWithInt:([[connections objectForKey:[[item favorite] objectForKey:@"uuid"]] isConnected]) ? NSOnState : NSOffState];
-	}
-
-	
-	return nil;
-}
-
-//outlineView: setObjectValue: forTableColumn: byItem:
-- (void)outlineView:(NSOutlineView *)outlineView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
-{
-	//disabling this code for now since this is done from the favorites editor, and double clicking a favorite now opens it(and eventually will connect)
-	//item = [item representedObject];
-	//[[favorites objectAtIndex:[item prefIndex]] setObject:object forKey:@"name"];
-	//[prefs setObject:favorites forKey:@"favorites"];
-}
-#pragma mark - NSOutlineView delegate methods
-
-// -------------------------------------------------------------------------------
-//	shouldSelectItem:item
-// -------------------------------------------------------------------------------
-- (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id)item
-{
-	return ![[item type] isEqualToString:@"root"];
-}
-
-- (void)outlineViewSelectionDidChange:(NSNotification *)notification
-{
-//	id item = [[notification object] itemAtRow:[[notification object] selectedRow]];
-}
-
-// ----------------------------------------------------------------------------------------
-// outlineView:isGroupItem:item
-// ----------------------------------------------------------------------------------------
--(BOOL)outlineView:(NSOutlineView*)outlineView isGroupItem:(id)item
-{
-	return [[item type] isEqualToString:@"root"];
-}
-
-- (BOOL)outlineView:(NSOutlineView *)outlineView shouldEditTableColumn:(NSTableColumn *)tableColumn item:(id)item
-{
-	//this isn't really used yet and will also need to change to support views,stored procs, etc
-	return [[item type] isEqualToString:@"table"];
-}
-
-// -------------------------------------------------------------------------------
-//	outlineView:willDisplayCell
-// -------------------------------------------------------------------------------
-- (void)outlineView:(NSOutlineView *)olv willDisplayCell:(NSCell*)cell forTableColumn:(NSTableColumn *)tableColumn item:(id)item
-{	 
-	if ([[tableColumn identifier] isEqual:OutlineImageColumn] && [[connections objectForKey:[[item favorite] objectForKey:@"uuid"]] isConnected]) {
-		if ([olv itemAtRow:[olv selectedRow]] == item)
-			[cell setImage:[NSImage imageNamed:@"eject_hot.png"]];
-		else
-			[cell setImage:[NSImage imageNamed:@"eject.png"]];
-		[cell setTarget:self];
-		[cell setAction:@selector(disconnect:)];
-	}else {
-		[cell setImage:nil];
-		[cell setTarget:nil];
-		[cell setAction:NULL];
-	}
-
-}
-
-- (void)outlineViewItemWillExpand:(NSNotification *)notification
-{
-	id item = [[notification userInfo] objectForKey:@"NSObject"];
-	if ([item type] == @"server") {
-		NSDictionary *favorite = [item favorite];
-		id<Gearbox> dboSource = [connections objectForKey:[favorite objectForKey:@"uuid"]];
-		
-		if (dboSource == nil){
-			dboSource = [self gearboxForType:[favorite objectForKey:@"type"]];
-			[connections setObject:dboSource forKey:[favorite objectForKey:@"uuid"]];
-		}
-		
-		if (![dboSource isConnected] && [dboSource connect:favorite])
-			[self reloadSchemas:[dboSource listSchemas:nil] forServerNode:item];
-		
-	}else if ([item type] == @"schema") {
-		NSDictionary *favorite = [[[notification object] parentForItem:item] favorite];
-		id<Gearbox> dboSource = [connections objectForKey:[favorite objectForKey:@"uuid"]];
-		[dboSource selectSchema:[item title]];
-		NSArray *tables = [dboSource listTables:nil];
-		[self reloadTables:tables forSchemaNode:item];
-	}
-}
-
-- (id)gearboxForType:(NSString *)type
-{
-	NSBundle *bundle = [[(ShiftAppDelegate *)[NSApp delegate] gearboxes] objectForKey:type];
-	id gearbox = [[[bundle principalClass] alloc] init];
-	[[NSNotificationCenter defaultCenter] addObserver:errorHandler selector:@selector(invalidQuery:) name:GBInvalidQuery object:gearbox];
-	return gearbox;
-}
-
 
 #pragma mark NSSplitView delegate methods
 

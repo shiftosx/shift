@@ -15,9 +15,9 @@
  * or see <http://www.gnu.org/licenses/>.
  */
 
-#import "BaseNode.h"
+#import "ShiftOutlineNode.h"
 
-@implementation BaseNode
+@implementation ShiftOutlineNode
 
 @synthesize title;
 @synthesize toolTip;
@@ -25,7 +25,7 @@
 @synthesize children;
 @synthesize image;
 @synthesize isLeaf;
-@synthesize favorite;
+@synthesize info;
 
 // -------------------------------------------------------------------------------
 //	init:
@@ -35,7 +35,7 @@
 	if (self = [super init])
 	{
 		[self setTitle:@"---"];
-		[self setType:@"server-child"];
+		//[self setType:nil];
 		[self setChildren:[NSMutableArray array]];
 		[self setIsLeaf:NO];
 	}
@@ -54,14 +54,14 @@
 	return self;
 }
 
-- (id)initFromFavorite:(NSDictionary*)newFavorite
+- (id)initFromFavorite:(NSDictionary*)favorite
 {
 	if (self = [self init])
 	{
-		[self setType:@"server"];
-		[self setFavorite:[newFavorite copy]];
-		[self setTitle:[newFavorite objectForKey:@"name"]];
-		[self setToolTip:[NSString stringWithFormat:@"%@%@",[newFavorite objectForKey:@"user"],[newFavorite objectForKey:@"host"]]];
+		[self setType:ShiftOutlineServerNode];
+		[self setInfo:[favorite copy]];
+		[self setTitle:[favorite objectForKey:@"name"]];
+		[self setToolTip:[NSString stringWithFormat:@"%@%@",[favorite objectForKey:@"user"],[favorite objectForKey:@"host"]]];
 		if ([[self title] isEqualToString:nil])
 			[self setTitle:[self toolTip]];
 		
@@ -112,18 +112,18 @@
 // -------------------------------------------------------------------------------
 //	compare:aNode
 // -------------------------------------------------------------------------------
-- (NSComparisonResult)compare:(BaseNode*)aNode
+- (NSComparisonResult)compare:(ShiftOutlineNode *)aNode
 {
 	return [[[self title] lowercaseString] compare:[[aNode title] lowercaseString]];
 }
 
-- (void)appendChild:(BaseNode*)child
+- (void)appendChild:(ShiftOutlineNode *)child
 {
 	
 	[children addObject:child];
 }
 
-- (void) insertChild:(BaseNode*)child atIndex:(NSUInteger)index
+- (void) insertChild:(ShiftOutlineNode *)child atIndex:(NSUInteger)index
 {
 	[children insertObject:child atIndex:index];
 }
@@ -135,7 +135,7 @@
 // -------------------------------------------------------------------------------
 - (BOOL)isDraggable
 {
-	return [type isEqualToString:@"server"];
+	return [type isEqualToString:ShiftOutlineServerNode];
 }
 
 // -------------------------------------------------------------------------------
@@ -249,7 +249,7 @@
 {
 	NSMutableArray	*groupChildren = [NSMutableArray array];
 	NSEnumerator	*childEnumerator = [children objectEnumerator];
-	BaseNode		*child;
+	ShiftOutlineNode		*child;
 	
 	while (child = [childEnumerator nextObject])
 	{

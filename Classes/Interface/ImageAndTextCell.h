@@ -16,13 +16,16 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "Gearbox.h"
 
-
-@interface ShiftErrorHandler : NSObject {
-
+@interface ImageAndTextCell : NSTextFieldCell
+{
+@private
+    NSImage    *image;
 }
 
-- (void) invalidQuery:(NSNotification *)notification;
+@property (retain) NSImage *image;
+
+- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView;
+- (NSSize)cellSize;
 
 @end
