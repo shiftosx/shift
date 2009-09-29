@@ -62,51 +62,12 @@
 	
 	//console
 	if ([prefs boolForKey:@"ConsoleOpen"]){
-		[contentSplitView addSubview:consoleView];
+		//[contentSplitView addSubview:consoleView];
 		[consoleView release];
 	}	
 
 	//source view
 	[serverOutline reloadServerList:[prefs objectForKey:@"favorites"]];
-}
-
-#pragma mark NSSplitView delegate methods
-
-// Constrains database source view to maximum width of 300 pixels
-- (CGFloat)splitView:(NSSplitView *)sender constrainMaxCoordinate:(CGFloat)proposedMax ofSubviewAt:(NSInteger)offset
-{
-	if ([sender isVertical]) //source list is the only vertical one
-		return 300;
-	else
-		return [sender frame].size.height-48;
-}
-
-// Constrains database source view to minimum width of 100 pixels
-- (CGFloat)splitView:(NSSplitView *)sender constrainMinCoordinate:(CGFloat)proposedMin ofSubviewAt:(NSInteger)offset
-{
-	return 100;
-}
-
-//handles resizing from the bottom bar
--(NSRect)splitView:(NSSplitView *)splitView additionalEffectiveRectOfDividerAtIndex:(NSInteger)dividerIndex {
-	return [splitResizeControl convertRect:[splitResizeControl bounds] toView:splitView]; 
-}
-
-
-// Constrains the source view and console to their current sizes while the window is resizing
-- (void)splitView:(NSSplitView *)sender resizeSubviewsWithOldSize:(NSSize)oldSize
-{
-	CGFloat position;
-	if ([sender isVertical]){
-		position = [[[sender subviews] objectAtIndex:0] frame].size.width;
-	}else if ([[sender subviews] count]>1){
-		position = [sender frame].size.height - [[[sender subviews] objectAtIndex:1] frame].size.height-1;
-	}
-	
-	[sender adjustSubviews];
-
-	if ([[sender subviews] count]>1)
-		[sender setPosition:position ofDividerAtIndex:0];
 }
 
 //Menu Item Hooks ------------------------------------------------------------------------------------------------------
@@ -135,7 +96,7 @@
 		[prefs setBool:NO forKey:@"ConsoleOpen"];
 	}else{
 		//show the console
-		[contentSplitView addSubview:consoleView];
+		//[contentSplitView addSubview:consoleView];
 		[consoleView release];
 		[prefs setBool:YES forKey:@"ConsoleOpen"];
 		//focus on the input field since people probably want to use the console if they're opening it

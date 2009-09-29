@@ -19,11 +19,11 @@
 #import "NSWindow.h"
 #import "KeyChain.h"
 #import "ShiftWindowController.h"
-#import "PreferenceTabs.h"
 #import "ShiftOutlineNode.h"
 #import "Gearbox.h"
 
 @interface PreferenceWindow : NSWindow {
-	IBOutlet PreferenceTabs *prefTabs;
+
 }
+
 @end

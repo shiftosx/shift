@@ -16,11 +16,29 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import "ConsoleView.h"
+#import "AboutBoxController.h"
+#import "PreferenceWindowController.h"
+#import "ShiftErrorHandler.h"
+#import "ShiftOutlineView.h"
 
 
-@interface PreferenceTabs : NSTabView {
+@interface ShiftWindowController : NSWindowController {
+	IBOutlet ShiftOutlineView *serverOutline;
+	
+	IBOutlet ConsoleView *consoleView;
+		
+	NSImage *serverImage;
+	
+	NSUserDefaults *prefs;
+	NSMutableArray *favorites;
 }
 
-- (IBAction)takeTabFromToolbarItem:(id)sender;
+@property (readonly) ShiftOutlineView *serverOutline;
+
+- (IBAction)toggleConsole:(id)sender;
+
+- (IBAction)showAboutBox:(id)sender;
+- (IBAction)showPreferencesWindow:(id)sender;
 
 @end

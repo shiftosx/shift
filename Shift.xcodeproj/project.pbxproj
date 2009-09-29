@@ -14,7 +14,6 @@
 		43603DE70E04E1D50024293E /* copyright.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 43603DE60E04E1D50024293E /* copyright.rtf */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		AB12F8B40DF99BFD00348CC4 /* PreferenceTabs.m in Sources */ = {isa = PBXBuildFile; fileRef = AB12F8B30DF99BFD00348CC4 /* PreferenceTabs.m */; };
 		AB12F9A20DFB004F00348CC4 /* updates.png in Resources */ = {isa = PBXBuildFile; fileRef = AB12F9A10DFB004F00348CC4 /* updates.png */; };
 		AB23982D0E6615F7004E224F /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB23982C0E6615F7004E224F /* Preferences.xib */; };
 		AB2D34D90E5B9EBF00BEACED /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB2D34D70E5B9EBF00BEACED /* MainMenu.xib */; };
@@ -39,6 +38,8 @@
 		AB604A221071169200EFCDB1 /* table.png in Resources */ = {isa = PBXBuildFile; fileRef = AB604A211071169200EFCDB1 /* table.png */; };
 		AB604A5C10714FFE00EFCDB1 /* function.png in Resources */ = {isa = PBXBuildFile; fileRef = AB604A5B10714FFE00EFCDB1 /* function.png */; };
 		AB604A841071577700EFCDB1 /* view.png in Resources */ = {isa = PBXBuildFile; fileRef = AB604A831071577700EFCDB1 /* view.png */; };
+		AB604A951071619C00EFCDB1 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB604A941071619C00EFCDB1 /* BWToolkitFramework.framework */; };
+		AB604AC6107161A300EFCDB1 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB604A941071619C00EFCDB1 /* BWToolkitFramework.framework */; };
 		AB6F68160E11C56700ABD651 /* ConsoleView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6F68150E11C56700ABD651 /* ConsoleView.m */; };
 		AB7B12DB1067EFCF0015202F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7B12DA1067EFCF0015202F /* Sparkle.framework */; };
 		AB7B13221067F2110015202F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7B12DA1067EFCF0015202F /* Sparkle.framework */; };
@@ -59,6 +60,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				AB604AC6107161A300EFCDB1 /* BWToolkitFramework.framework in Frameworks */,
 				AB7B13221067F2110015202F /* Sparkle.framework in Frameworks */,
 			);
 			name = Frameworks;
@@ -87,64 +89,63 @@
 		32CA4F630368D1EE00C91783 /* Shift_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shift_Prefix.pch; sourceTree = "<group>"; };
 		434F12010DE91943008073D5 /* Terminal.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Terminal.tiff; sourceTree = "<group>"; };
 		434F12030DE919B1008073D5 /* Play.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Play.tiff; sourceTree = "<group>"; };
-		43603CFB0E04D59E0024293E /* AboutBoxController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutBoxController.h; path = Classes/AboutBoxController.h; sourceTree = "<group>"; };
-		43603CFC0E04D59E0024293E /* AboutBoxController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutBoxController.m; path = Classes/AboutBoxController.m; sourceTree = "<group>"; };
+		43603CFB0E04D59E0024293E /* AboutBoxController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutBoxController.h; path = Source/AboutBoxController.h; sourceTree = "<group>"; };
+		43603CFC0E04D59E0024293E /* AboutBoxController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutBoxController.m; path = Source/AboutBoxController.m; sourceTree = "<group>"; };
 		43603D080E04D92F0024293E /* AboutBox.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AboutBox.xib; path = Resources/XIB/AboutBox.xib; sourceTree = "<group>"; };
 		43603DE60E04E1D50024293E /* copyright.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = copyright.rtf; path = Resources/copyright.rtf; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Shift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shift.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB12F8B20DF99BFD00348CC4 /* PreferenceTabs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferenceTabs.h; path = Classes/PreferenceTabs.h; sourceTree = "<group>"; };
-		AB12F8B30DF99BFD00348CC4 /* PreferenceTabs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferenceTabs.m; path = Classes/PreferenceTabs.m; sourceTree = "<group>"; };
 		AB12F9A10DFB004F00348CC4 /* updates.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updates.png; sourceTree = "<group>"; };
 		AB2D34D80E5B9EBF00BEACED /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = Resources/XIB/English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		AB2D34DB0E5B9ECB00BEACED /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = Resources/XIB/English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		AB2D366B0E5DD1B100BEACED /* PreferenceServers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferenceServers.h; path = Classes/PreferenceServers.h; sourceTree = "<group>"; };
-		AB2D366C0E5DD1B100BEACED /* PreferenceServers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferenceServers.m; path = Classes/PreferenceServers.m; sourceTree = "<group>"; };
-		AB2D372D0E5E2DDF00BEACED /* PreferenceAdvanced.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferenceAdvanced.h; path = Classes/PreferenceAdvanced.h; sourceTree = "<group>"; };
-		AB2D372E0E5E2DDF00BEACED /* PreferenceAdvanced.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferenceAdvanced.m; path = Classes/PreferenceAdvanced.m; sourceTree = "<group>"; };
+		AB2D366B0E5DD1B100BEACED /* PreferenceServers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferenceServers.h; path = Source/Preferences/PreferenceServers.h; sourceTree = "<group>"; };
+		AB2D366C0E5DD1B100BEACED /* PreferenceServers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferenceServers.m; path = Source/Preferences/PreferenceServers.m; sourceTree = "<group>"; };
+		AB2D372D0E5E2DDF00BEACED /* PreferenceAdvanced.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferenceAdvanced.h; path = Source/Preferences/PreferenceAdvanced.h; sourceTree = "<group>"; };
+		AB2D372E0E5E2DDF00BEACED /* PreferenceAdvanced.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferenceAdvanced.m; path = Source/Preferences/PreferenceAdvanced.m; sourceTree = "<group>"; };
 		AB2D39170E621D7000BEACED /* Gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gradient.png; sourceTree = "<group>"; };
 		AB2D39180E621D7000BEACED /* ResizeControl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ResizeControl.png; sourceTree = "<group>"; };
-		AB2D57EA0E00ACD7003FE881 /* KeyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyChain.h; path = Classes/KeyChain.h; sourceTree = "<group>"; };
-		AB2D57EB0E00ACD7003FE881 /* KeyChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyChain.m; path = Classes/KeyChain.m; sourceTree = "<group>"; };
+		AB2D57EA0E00ACD7003FE881 /* KeyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyChain.h; path = Source/Utilities/KeyChain.h; sourceTree = "<group>"; };
+		AB2D57EB0E00ACD7003FE881 /* KeyChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyChain.m; path = Source/Utilities/KeyChain.m; sourceTree = "<group>"; };
 		AB2D57F50E00AE24003FE881 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		AB4B7C2E0DE9056900CC7D07 /* Shift.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Shift.icns; sourceTree = "<group>"; };
-		AB54F5920DE9FAAF00A5B233 /* ShiftWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftWindowController.m; path = Classes/ShiftWindowController.m; sourceTree = "<group>"; };
-		AB54F5930DE9FAAF00A5B233 /* ShiftWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftWindowController.h; path = Classes/ShiftWindowController.h; sourceTree = "<group>"; };
-		AB54F5C60DEA0CA400A5B233 /* ShiftOutlineNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftOutlineNode.h; path = Classes/ShiftOutlineNode.h; sourceTree = "<group>"; };
-		AB54F5C70DEA0CA400A5B233 /* ShiftOutlineNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftOutlineNode.m; path = Classes/ShiftOutlineNode.m; sourceTree = "<group>"; };
+		AB54F5920DE9FAAF00A5B233 /* ShiftWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftWindowController.m; path = Source/ShiftWindowController.m; sourceTree = "<group>"; };
+		AB54F5930DE9FAAF00A5B233 /* ShiftWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftWindowController.h; path = Source/ShiftWindowController.h; sourceTree = "<group>"; };
+		AB54F5C60DEA0CA400A5B233 /* ShiftOutlineNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftOutlineNode.h; path = Source/ShiftOutlineNode.h; sourceTree = "<group>"; };
+		AB54F5C70DEA0CA400A5B233 /* ShiftOutlineNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftOutlineNode.m; path = Source/ShiftOutlineNode.m; sourceTree = "<group>"; };
 		AB54F7390DEA46AA00A5B233 /* database.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = database.png; sourceTree = "<group>"; };
 		AB6044E71069A4A100EFCDB1 /* eject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eject.png; sourceTree = "<group>"; };
 		AB6045371069C99600EFCDB1 /* eject_hot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eject_hot.png; sourceTree = "<group>"; };
-		AB604591106B05EA00EFCDB1 /* ShiftErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftErrorHandler.h; path = Classes/ShiftErrorHandler.h; sourceTree = "<group>"; };
-		AB604592106B05EA00EFCDB1 /* ShiftErrorHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftErrorHandler.m; path = Classes/ShiftErrorHandler.m; sourceTree = "<group>"; };
-		AB604659106BE68100EFCDB1 /* ShiftOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftOutlineView.h; path = Classes/ShiftOutlineView.h; sourceTree = "<group>"; };
-		AB60465A106BE68100EFCDB1 /* ShiftOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftOutlineView.m; path = Classes/ShiftOutlineView.m; sourceTree = "<group>"; };
-		AB60465F106BF1DB00EFCDB1 /* ShiftDatabaseConnections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftDatabaseConnections.h; path = Classes/ShiftDatabaseConnections.h; sourceTree = "<group>"; };
-		AB604660106BF1DB00EFCDB1 /* ShiftDatabaseConnections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftDatabaseConnections.m; path = Classes/ShiftDatabaseConnections.m; sourceTree = "<group>"; };
+		AB604591106B05EA00EFCDB1 /* ShiftErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftErrorHandler.h; path = Source/ShiftErrorHandler.h; sourceTree = "<group>"; };
+		AB604592106B05EA00EFCDB1 /* ShiftErrorHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftErrorHandler.m; path = Source/ShiftErrorHandler.m; sourceTree = "<group>"; };
+		AB604659106BE68100EFCDB1 /* ShiftOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftOutlineView.h; path = Source/ShiftOutlineView.h; sourceTree = "<group>"; };
+		AB60465A106BE68100EFCDB1 /* ShiftOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftOutlineView.m; path = Source/ShiftOutlineView.m; sourceTree = "<group>"; };
+		AB60465F106BF1DB00EFCDB1 /* ShiftDatabaseConnections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftDatabaseConnections.h; path = Source/ShiftDatabaseConnections.h; sourceTree = "<group>"; };
+		AB604660106BF1DB00EFCDB1 /* ShiftDatabaseConnections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftDatabaseConnections.m; path = Source/ShiftDatabaseConnections.m; sourceTree = "<group>"; };
 		AB6048B3106DA59000EFCDB1 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = Resources/XIB/English.lproj/Localizable.strings; sourceTree = "<group>"; };
-		AB60497210704A6E00EFCDB1 /* ImageAndTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageAndTextCell.h; path = Classes/Interface/ImageAndTextCell.h; sourceTree = "<group>"; };
-		AB60497310704A6E00EFCDB1 /* ImageAndTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageAndTextCell.m; path = Classes/Interface/ImageAndTextCell.m; sourceTree = "<group>"; };
+		AB60497210704A6E00EFCDB1 /* ImageAndTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageAndTextCell.h; path = Source/Interface/ImageAndTextCell.h; sourceTree = "<group>"; };
+		AB60497310704A6E00EFCDB1 /* ImageAndTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageAndTextCell.m; path = Source/Interface/ImageAndTextCell.m; sourceTree = "<group>"; };
 		AB604A211071169200EFCDB1 /* table.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = table.png; sourceTree = "<group>"; };
 		AB604A5B10714FFE00EFCDB1 /* function.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = function.png; sourceTree = "<group>"; };
 		AB604A831071577700EFCDB1 /* view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view.png; sourceTree = "<group>"; };
-		AB6F68140E11C56700ABD651 /* ConsoleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsoleView.h; path = Classes/ConsoleView.h; sourceTree = "<group>"; };
-		AB6F68150E11C56700ABD651 /* ConsoleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConsoleView.m; path = Classes/ConsoleView.m; sourceTree = "<group>"; };
+		AB604A941071619C00EFCDB1 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = Frameworks/BWToolkitFramework.framework; sourceTree = "<group>"; };
+		AB6F68140E11C56700ABD651 /* ConsoleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsoleView.h; path = Source/ConsoleView.h; sourceTree = "<group>"; };
+		AB6F68150E11C56700ABD651 /* ConsoleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConsoleView.m; path = Source/ConsoleView.m; sourceTree = "<group>"; };
 		AB7B12DA1067EFCF0015202F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		AB918BC20E57D45700A3CC83 /* ShiftBundle.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ShiftBundle.icns; sourceTree = "<group>"; };
-		ABA054450E42331200A791E1 /* CenteredTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CenteredTextFieldCell.h; path = Classes/Interface/CenteredTextFieldCell.h; sourceTree = "<group>"; };
-		ABA054460E42331200A791E1 /* CenteredTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CenteredTextFieldCell.m; path = Classes/Interface/CenteredTextFieldCell.m; sourceTree = "<group>"; };
+		ABA054450E42331200A791E1 /* CenteredTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CenteredTextFieldCell.h; path = Source/Interface/CenteredTextFieldCell.h; sourceTree = "<group>"; };
+		ABA054460E42331200A791E1 /* CenteredTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CenteredTextFieldCell.m; path = Source/Interface/CenteredTextFieldCell.m; sourceTree = "<group>"; };
 		ABA056030E4242D200A791E1 /* MySQL.gearbox */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MySQL.gearbox; path = PlugIns/MySQL.gearbox; sourceTree = "<group>"; };
-		ABA056600E425E8300A791E1 /* Gearbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gearbox.h; path = Classes/Dbo/Gearbox.h; sourceTree = "<group>"; };
+		ABA056600E425E8300A791E1 /* Gearbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gearbox.h; path = Source/Dbo/Gearbox.h; sourceTree = "<group>"; };
 		ABA0568F0E4264E200A791E1 /* SQLite.gearbox */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SQLite.gearbox; path = PlugIns/SQLite.gearbox; sourceTree = "<group>"; };
 		ABB711960E5B15B200E5513E /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = Resources/XIB/English.lproj/Preferences.xib; sourceTree = "<group>"; };
-		ABB7119A0E5B16A800E5513E /* PreferenceWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferenceWindowController.h; path = Classes/PreferenceWindowController.h; sourceTree = "<group>"; };
-		ABB7119B0E5B16A800E5513E /* PreferenceWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferenceWindowController.m; path = Classes/PreferenceWindowController.m; sourceTree = "<group>"; };
-		ABB711CC0E5B268700E5513E /* ShiftAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftAppDelegate.h; path = Classes/ShiftAppDelegate.h; sourceTree = "<group>"; };
-		ABB711CD0E5B268700E5513E /* ShiftAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftAppDelegate.m; path = Classes/ShiftAppDelegate.m; sourceTree = "<group>"; };
-		ABC2410A0DF8BA750099E88E /* PreferenceWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferenceWindow.h; path = Classes/PreferenceWindow.h; sourceTree = "<group>"; };
-		ABC2410B0DF8BA750099E88E /* PreferenceWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferenceWindow.m; path = Classes/PreferenceWindow.m; sourceTree = "<group>"; };
-		ABDDB8480DFD94CF00D940FF /* NSWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSWindow.h; path = Classes/Categories/NSWindow.h; sourceTree = "<group>"; };
-		ABDDB8490DFD94CF00D940FF /* NSWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSWindow.m; path = Classes/Categories/NSWindow.m; sourceTree = "<group>"; };
+		ABB7119A0E5B16A800E5513E /* PreferenceWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferenceWindowController.h; path = Source/Preferences/PreferenceWindowController.h; sourceTree = "<group>"; };
+		ABB7119B0E5B16A800E5513E /* PreferenceWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferenceWindowController.m; path = Source/Preferences/PreferenceWindowController.m; sourceTree = "<group>"; };
+		ABB711CC0E5B268700E5513E /* ShiftAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftAppDelegate.h; path = Source/ShiftAppDelegate.h; sourceTree = "<group>"; };
+		ABB711CD0E5B268700E5513E /* ShiftAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftAppDelegate.m; path = Source/ShiftAppDelegate.m; sourceTree = "<group>"; };
+		ABC2410A0DF8BA750099E88E /* PreferenceWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferenceWindow.h; path = Source/Preferences/PreferenceWindow.h; sourceTree = "<group>"; };
+		ABC2410B0DF8BA750099E88E /* PreferenceWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferenceWindow.m; path = Source/Preferences/PreferenceWindow.m; sourceTree = "<group>"; };
+		ABDDB8480DFD94CF00D940FF /* NSWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSWindow.h; path = Source/Utilities/NSWindow.h; sourceTree = "<group>"; };
+		ABDDB8490DFD94CF00D940FF /* NSWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSWindow.m; path = Source/Utilities/NSWindow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,13 +156,14 @@
 				AB7B12DB1067EFCF0015202F /* Sparkle.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				AB2D57F60E00AE24003FE881 /* Security.framework in Frameworks */,
+				AB604A951071619C00EFCDB1 /* BWToolkitFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Classes */ = {
+		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				ABA642B70E3BE4C0007702E0 /* Dbo */,
@@ -172,8 +174,6 @@
 				43603CFC0E04D59E0024293E /* AboutBoxController.m */,
 				AB6F68140E11C56700ABD651 /* ConsoleView.h */,
 				AB6F68150E11C56700ABD651 /* ConsoleView.m */,
-				AB2D57EA0E00ACD7003FE881 /* KeyChain.h */,
-				AB2D57EB0E00ACD7003FE881 /* KeyChain.m */,
 				ABB711CC0E5B268700E5513E /* ShiftAppDelegate.h */,
 				ABB711CD0E5B268700E5513E /* ShiftAppDelegate.m */,
 				AB54F5930DE9FAAF00A5B233 /* ShiftWindowController.h */,
@@ -187,12 +187,13 @@
 				AB60465F106BF1DB00EFCDB1 /* ShiftDatabaseConnections.h */,
 				AB604660106BF1DB00EFCDB1 /* ShiftDatabaseConnections.m */,
 			);
-			name = Classes;
+			name = Source;
 			sourceTree = "<group>";
 		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AB604A941071619C00EFCDB1 /* BWToolkitFramework.framework */,
 				AB2D57F50E00AE24003FE881 /* Security.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				AB7B12DA1067EFCF0015202F /* Sparkle.framework */,
@@ -221,7 +222,7 @@
 		29B97314FDCFA39411CA2CEA /* Shift */ = {
 			isa = PBXGroup;
 			children = (
-				080E96DDFE201D6D7F000001 /* Classes */,
+				080E96DDFE201D6D7F000001 /* Source */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -308,6 +309,8 @@
 			children = (
 				ABDDB8480DFD94CF00D940FF /* NSWindow.h */,
 				ABDDB8490DFD94CF00D940FF /* NSWindow.m */,
+				AB2D57EA0E00ACD7003FE881 /* KeyChain.h */,
+				AB2D57EB0E00ACD7003FE881 /* KeyChain.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -319,8 +322,6 @@
 				AB2D372E0E5E2DDF00BEACED /* PreferenceAdvanced.m */,
 				AB2D366B0E5DD1B100BEACED /* PreferenceServers.h */,
 				AB2D366C0E5DD1B100BEACED /* PreferenceServers.m */,
-				AB12F8B20DF99BFD00348CC4 /* PreferenceTabs.h */,
-				AB12F8B30DF99BFD00348CC4 /* PreferenceTabs.m */,
 				ABC2410A0DF8BA750099E88E /* PreferenceWindow.h */,
 				ABC2410B0DF8BA750099E88E /* PreferenceWindow.m */,
 				ABB7119A0E5B16A800E5513E /* PreferenceWindowController.h */,
@@ -434,7 +435,6 @@
 				AB54F5940DE9FAAF00A5B233 /* ShiftWindowController.m in Sources */,
 				AB54F5C80DEA0CA400A5B233 /* ShiftOutlineNode.m in Sources */,
 				ABC2410C0DF8BA750099E88E /* PreferenceWindow.m in Sources */,
-				AB12F8B40DF99BFD00348CC4 /* PreferenceTabs.m in Sources */,
 				ABDDB84A0DFD94CF00D940FF /* NSWindow.m in Sources */,
 				AB2D57EC0E00ACD7003FE881 /* KeyChain.m in Sources */,
 				43603CFD0E04D59E0024293E /* AboutBoxController.m in Sources */,

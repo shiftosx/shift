@@ -17,6 +17,7 @@
 
 #import "PreferenceWindow.h"
 #import "ShiftAppDelegate.h"
+#import <BWToolkitFramework/BWToolkitFramework.h>
 
 @implementation PreferenceWindow
 
@@ -29,27 +30,14 @@
 //awakeFromNib
 - (void)awakeFromNib
 {
-	NSUserDefaults *prefs = [[NSUserDefaults standardUserDefaults] autorelease];
-		
-	//defaults the toolbar to the last selection
-	NSString *tabItem = [prefs stringForKey:@"LastPreferenceTab"];
-	if (tabItem == nil)
-			tabItem = @"General";
-	[[self toolbar] setSelectedItemIdentifier:tabItem];
-	
-	//we're doing this to grab the origin
-	NSRect rect = [self frame];
-	//this handles the resizing but origins are bottom left so we reset the origin after the window has been resized
-	[prefTabs takeTabFromToolbarItem:self];
-	[self setFrameOrigin:rect.origin];
-}
-
-#pragma mark NSToolbar delegate methods
-
-- (NSArray *)toolbarSelectableItemIdentifiers: (NSToolbar *)toolbar;
-{
-	//note: i had to edit the xib in textmate to assign these identifiers because IB doesn't yet allow you to set the identifiers
-    return [NSArray arrayWithObjects:@"General", @"Servers", @"Updates", @"Advanced", nil];
+	//disabled for the time being...
+//	NSUserDefaults *prefs = [[NSUserDefaults standardUserDefaults] autorelease];
+//		
+//	//defaults the toolbar to the last selection
+//	NSString *tabItem = [prefs stringForKey:@"LastPreferenceTab"];
+//	if (tabItem == nil)
+//			tabItem = @"General";
+//	[(BWSelectableToolbar *)[self toolbar] setSelectedItemIdentifierWithoutAnimation:tabItem];
 }
 
 - (BOOL)canBecomeMainWindow
