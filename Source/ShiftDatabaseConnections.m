@@ -40,11 +40,7 @@
 
 - (id<Gearbox>)connect:(NSDictionary *)connection
 {
-	id<Gearbox> gearbox = [connections objectForKey:[connection objectForKey:@"uuid"]];
-	if (!gearbox){
-		gearbox = [(ShiftAppDelegate *)[NSApp delegate] gearboxForType:[connection objectForKey:@"type"]];
-		[connections setObject:gearbox forKey:[connection objectForKey:@"uuid"]];
-	}
+	id<Gearbox> gearbox = [self gearboxForConnection:connection];
 	if (![gearbox isConnected])
 		[gearbox connect:connection];
 	return gearbox;
@@ -69,12 +65,14 @@
 
 - (id<Gearbox>)gearboxForConnection:(NSDictionary *)connection
 {
-	return [self gearboxForUUID:[connection objectForKey:@"uuid"]];
+	id<Gearbox> gearbox = [connections objectForKey:[connection objectForKey:@"uuid"]];
+	if (gearbox == nil && connection){
+		gearbox = [(ShiftAppDelegate *)[NSApp delegate] gearboxForType:[connection objectForKey:@"type"]];
+		[connections setObject:gearbox forKey:[connection objectForKey:@"uuid"]];
+	}
+	
+	return gearbox;
 }
 
-- (id<Gearbox>)gearboxForUUID:(NSString *)uuid
-{
-	return [connections objectForKey:uuid];
-}
 
 @end

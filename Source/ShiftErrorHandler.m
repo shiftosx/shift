@@ -20,13 +20,30 @@
 
 @implementation ShiftErrorHandler
 
+- (NSString *)errorTitle:(Class)gbClass
+{
+	return [NSString stringWithFormat:@"%@ : %@",NSLocalizedString(@"Shift", @"Shift"), [gbClass gbTitle]];
+}
+
 - (void) invalidQuery:(NSNotification *)notification
 {
-	[[NSAlert alertWithMessageText:[[notification userInfo] objectForKey:@"reason"] 
+	NSString *informativeText = [NSString stringWithFormat:@"%@\n\n%@",
+								 [[notification userInfo] objectForKey:@"reason"],
+								 [[notification userInfo] objectForKey:@"query"]];
+	[[NSAlert alertWithMessageText:[self errorTitle:[[notification object] class]]
 					defaultButton:nil 
 				  alternateButton:nil 
 					  otherButton:nil 
-		informativeTextWithFormat:[[notification userInfo] objectForKey:@"query"]] runModal];
+		informativeTextWithFormat:informativeText] runModal];
+}
+
+- (void) connectionFailed:(NSNotification *)notification
+{
+	[[NSAlert alertWithMessageText:[self errorTitle:[[notification object] class]]
+					 defaultButton:nil 
+				   alternateButton:nil 
+					   otherButton:nil 
+		 informativeTextWithFormat:[[notification object] lastErrorMessage]] runModal];
 }
 
 @end

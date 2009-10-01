@@ -182,7 +182,7 @@
 {
 	if ([[tableColumn identifier] isEqual:OutlineTitleColumn]) {
 		return [item title];
-	}else {
+	}else if ([[item type] isEqual:ShiftOutlineServerNode]){
 		return [NSNumber numberWithInt:([[[self connections] gearboxForConnection:[item info]] isConnected]) ? NSOnState : NSOffState];
 	}
 
@@ -235,10 +235,11 @@
 {	 
 	if ([[tableColumn identifier] isEqual:OutlineTitleColumn]){
 		if ([[item type] isEqual:ShiftOutlineServerNode]) {
-			[cell setFont:[NSFont boldSystemFontOfSize:[NSFont systemFontSize]]];
+			[cell setFont:[NSFont boldSystemFontOfSize:[NSFont systemFontSize] - 1.0]];
 		}else {
-			[cell setFont:[NSFont systemFontOfSize:[NSFont systemFontSize]]];
+			[cell setFont:[NSFont systemFontOfSize:[NSFont systemFontSize] - 1.0]];
 		}
+		
 		if ([[item type] isEqual:ShiftOutlineTableNode]) {
 			[cell setImage:[NSImage imageNamed:@"table.png"]];
 		}else if ([[item type] isEqual:ShiftOutlineViewNode]) {
@@ -255,7 +256,7 @@
 
 
 	}else if ([[tableColumn identifier] isEqual:OutlineImageColumn]){
-		if ([[[self connections] gearboxForConnection:[item info]] isConnected]){
+		if ([[item type] isEqual:ShiftOutlineServerNode] && [[[self connections] gearboxForConnection:[item info]] isConnected]){
 			if ([olv itemAtRow:[olv selectedRow]] == item)
 				[cell setImage:[NSImage imageNamed:@"eject_hot.png"]];
 			else

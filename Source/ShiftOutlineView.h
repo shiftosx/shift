@@ -19,7 +19,7 @@
 #import "ShiftOutlineNode.h"
 #import "ShiftDatabaseConnections.h"
 
-@interface ShiftOutlineView : NSOutlineView {
+@interface ShiftOutlineView : NSOutlineView <NSOutlineViewDelegate, NSOutlineViewDataSource>{
 	NSMutableArray *contents;
 	ShiftOutlineNode *root;
 }

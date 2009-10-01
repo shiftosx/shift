@@ -15,7 +15,9 @@
  * or see <http://www.gnu.org/licenses/>.
  */
 
-#define GBInvalidQuery @"GBInvalidQuery"
+#define GBNotificationConnected           @"GBNotificationConnected"
+#define GBNotificationConnectionFailed    @"GBNotificationConnectionFailed"
+#define GBNotificationInvalidQuery        @"GBNotificationInvalidQuery"
 
 #define GBFeatureTable          @"GBFeatureTable"
 #define GBFeatureView           @"GBFeatureView"
@@ -55,5 +57,21 @@
 - (BOOL) isConnected;
 - (BOOL) connect:(NSDictionary *)favorite;
 - (void) disconnect;
+
+@end
+
+//handy category to simplify positing notifications back to shift
+@interface NSObject (Notification)
+
+- (void) postNotification:(NSString *)notification withInfo:(NSDictionary *)info;
+
+@end
+
+@implementation NSObject (Notification)
+
+- (void) postNotification:(NSString *)notification withInfo:(NSDictionary *)info
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName:notification object:self userInfo:info];
+}
 
 @end

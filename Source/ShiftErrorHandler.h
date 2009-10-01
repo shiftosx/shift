@@ -23,6 +23,9 @@
 
 }
 
+- (NSString *)errorTitle:(id)gbClass;
+
 - (void) invalidQuery:(NSNotification *)notification;
+- (void) connectionFailed:(NSNotification *)notification;
 
 @end

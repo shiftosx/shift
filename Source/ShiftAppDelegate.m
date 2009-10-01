@@ -37,7 +37,7 @@
 	NSMutableDictionary *bundleDictionary = [[NSMutableDictionary alloc] init];
 	
 	NSString *pluginPath = [[NSBundle mainBundle] builtInPlugInsPath];
-	for(NSString *bundlePath in [[NSFileManager defaultManager] directoryContentsAtPath:pluginPath]){
+	for(NSString *bundlePath in [[NSFileManager defaultManager] contentsOfDirectoryAtPath:pluginPath error:NULL]){
 		NSBundle *bundle = [NSBundle bundleWithPath:[pluginPath stringByAppendingPathComponent:bundlePath]];
 		if ([[bundle principalClass] conformsToProtocol:@protocol(Gearbox)]){
 			[bundleDictionary setObject:bundle forKey:[[bundlePath componentsSeparatedByString:@"."] objectAtIndex:0]];
@@ -51,7 +51,8 @@
 {
 	NSBundle *bundle = [[self gearboxes] objectForKey:type];
 	id gearbox = [[[bundle principalClass] alloc] init];
-	[[NSNotificationCenter defaultCenter] addObserver:errorHandler selector:@selector(invalidQuery:) name:GBInvalidQuery object:gearbox];
+	[[NSNotificationCenter defaultCenter] addObserver:errorHandler selector:@selector(invalidQuery:) name:GBNotificationInvalidQuery object:gearbox];
+	[[NSNotificationCenter defaultCenter] addObserver:errorHandler selector:@selector(connectionFailed:) name:GBNotificationConnectionFailed object:gearbox];
 	return gearbox;
 }
 

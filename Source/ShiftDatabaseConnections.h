@@ -29,7 +29,6 @@
 - (void)disconnect:(id)connection;
 
 - (id<Gearbox>)gearboxForConnection:(NSDictionary *)connection;
-- (id<Gearbox>)gearboxForUUID:(NSString *)uuid;
 
 
 @end

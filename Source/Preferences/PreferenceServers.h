@@ -19,7 +19,7 @@
 #import "KeyChain.h"
 #import "ShiftOutlineView.h"
 
-@interface PreferenceServers : NSTableView {
+@interface PreferenceServers : NSTableView <NSTableViewDelegate, NSTableViewDataSource> {
 	//favorites
 	NSUserDefaults *prefs;
 	NSMutableArray *favorites;	
