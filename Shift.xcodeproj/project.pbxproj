@@ -40,13 +40,16 @@
 		AB604A841071577700EFCDB1 /* view.png in Resources */ = {isa = PBXBuildFile; fileRef = AB604A831071577700EFCDB1 /* view.png */; };
 		AB604A951071619C00EFCDB1 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB604A941071619C00EFCDB1 /* BWToolkitFramework.framework */; };
 		AB604AC6107161A300EFCDB1 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB604A941071619C00EFCDB1 /* BWToolkitFramework.framework */; };
+		AB613A8510753630003632B0 /* MySQL.gearbox in Resources */ = {isa = PBXBuildFile; fileRef = AB613A6610753630003632B0 /* MySQL.gearbox */; };
+		AB613A8610753630003632B0 /* SQLite.gearbox in Resources */ = {isa = PBXBuildFile; fileRef = AB613A7710753630003632B0 /* SQLite.gearbox */; };
+		AB613A871075363C003632B0 /* MySQL.gearbox in PlugIns */ = {isa = PBXBuildFile; fileRef = AB613A6610753630003632B0 /* MySQL.gearbox */; };
+		AB613A881075363C003632B0 /* SQLite.gearbox in PlugIns */ = {isa = PBXBuildFile; fileRef = AB613A7710753630003632B0 /* SQLite.gearbox */; };
+		AB613B6A1077AB32003632B0 /* ShiftOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = AB613B691077AB32003632B0 /* ShiftOperations.m */; };
 		AB6F68160E11C56700ABD651 /* ConsoleView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6F68150E11C56700ABD651 /* ConsoleView.m */; };
 		AB7B12DB1067EFCF0015202F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7B12DA1067EFCF0015202F /* Sparkle.framework */; };
 		AB7B13221067F2110015202F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7B12DA1067EFCF0015202F /* Sparkle.framework */; };
 		AB918BC30E57D45700A3CC83 /* ShiftBundle.icns in Resources */ = {isa = PBXBuildFile; fileRef = AB918BC20E57D45700A3CC83 /* ShiftBundle.icns */; };
 		ABA054470E42331200A791E1 /* CenteredTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA054460E42331200A791E1 /* CenteredTextFieldCell.m */; };
-		ABA056040E4242D200A791E1 /* MySQL.gearbox in PlugIns */ = {isa = PBXBuildFile; fileRef = ABA056030E4242D200A791E1 /* MySQL.gearbox */; };
-		ABA056900E4264E200A791E1 /* SQLite.gearbox in PlugIns */ = {isa = PBXBuildFile; fileRef = ABA0568F0E4264E200A791E1 /* SQLite.gearbox */; };
 		ABB7119C0E5B16A800E5513E /* PreferenceWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB7119B0E5B16A800E5513E /* PreferenceWindowController.m */; };
 		ABB711CE0E5B268700E5513E /* ShiftAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB711CD0E5B268700E5513E /* ShiftAppDelegate.m */; };
 		ABC2410C0DF8BA750099E88E /* PreferenceWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC2410B0DF8BA750099E88E /* PreferenceWindow.m */; };
@@ -72,8 +75,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				ABA056900E4264E200A791E1 /* SQLite.gearbox in PlugIns */,
-				ABA056040E4242D200A791E1 /* MySQL.gearbox in PlugIns */,
+				AB613A871075363C003632B0 /* MySQL.gearbox in PlugIns */,
+				AB613A881075363C003632B0 /* SQLite.gearbox in PlugIns */,
 			);
 			name = PlugIns;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,15 +131,17 @@
 		AB604A5B10714FFE00EFCDB1 /* function.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = function.png; sourceTree = "<group>"; };
 		AB604A831071577700EFCDB1 /* view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view.png; sourceTree = "<group>"; };
 		AB604A941071619C00EFCDB1 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = Frameworks/BWToolkitFramework.framework; sourceTree = "<group>"; };
+		AB613A6610753630003632B0 /* MySQL.gearbox */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MySQL.gearbox; path = PlugIns/MySQL.gearbox; sourceTree = "<group>"; };
+		AB613A7710753630003632B0 /* SQLite.gearbox */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SQLite.gearbox; path = PlugIns/SQLite.gearbox; sourceTree = "<group>"; };
+		AB613B681077AB32003632B0 /* ShiftOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftOperations.h; path = Source/ShiftOperations.h; sourceTree = "<group>"; };
+		AB613B691077AB32003632B0 /* ShiftOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftOperations.m; path = Source/ShiftOperations.m; sourceTree = "<group>"; };
 		AB6F68140E11C56700ABD651 /* ConsoleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsoleView.h; path = Source/ConsoleView.h; sourceTree = "<group>"; };
 		AB6F68150E11C56700ABD651 /* ConsoleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConsoleView.m; path = Source/ConsoleView.m; sourceTree = "<group>"; };
 		AB7B12DA1067EFCF0015202F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		AB918BC20E57D45700A3CC83 /* ShiftBundle.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ShiftBundle.icns; sourceTree = "<group>"; };
 		ABA054450E42331200A791E1 /* CenteredTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CenteredTextFieldCell.h; path = Source/Interface/CenteredTextFieldCell.h; sourceTree = "<group>"; };
 		ABA054460E42331200A791E1 /* CenteredTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CenteredTextFieldCell.m; path = Source/Interface/CenteredTextFieldCell.m; sourceTree = "<group>"; };
-		ABA056030E4242D200A791E1 /* MySQL.gearbox */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MySQL.gearbox; path = PlugIns/MySQL.gearbox; sourceTree = "<group>"; };
 		ABA056600E425E8300A791E1 /* Gearbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gearbox.h; path = Source/Dbo/Gearbox.h; sourceTree = "<group>"; };
-		ABA0568F0E4264E200A791E1 /* SQLite.gearbox */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SQLite.gearbox; path = PlugIns/SQLite.gearbox; sourceTree = "<group>"; };
 		ABB711960E5B15B200E5513E /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = Resources/XIB/English.lproj/Preferences.xib; sourceTree = "<group>"; };
 		ABB7119A0E5B16A800E5513E /* PreferenceWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferenceWindowController.h; path = Source/Preferences/PreferenceWindowController.h; sourceTree = "<group>"; };
 		ABB7119B0E5B16A800E5513E /* PreferenceWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferenceWindowController.m; path = Source/Preferences/PreferenceWindowController.m; sourceTree = "<group>"; };
@@ -166,7 +171,7 @@
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				ABA642B70E3BE4C0007702E0 /* Dbo */,
+				ABA642B70E3BE4C0007702E0 /* Gearbox */,
 				AB2D35370E5BA2A000BEACED /* Interface */,
 				AB86B1CC0E47F656003CB3AD /* Preferences */,
 				AB6B51DE0DFE170200D35E8E /* Utilities */,
@@ -186,6 +191,8 @@
 				AB60465A106BE68100EFCDB1 /* ShiftOutlineView.m */,
 				AB60465F106BF1DB00EFCDB1 /* ShiftDatabaseConnections.h */,
 				AB604660106BF1DB00EFCDB1 /* ShiftDatabaseConnections.m */,
+				AB613B681077AB32003632B0 /* ShiftOperations.h */,
+				AB613B691077AB32003632B0 /* ShiftOperations.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -333,18 +340,18 @@
 		ABA056020E4242C000A791E1 /* PlugIns */ = {
 			isa = PBXGroup;
 			children = (
-				ABA0568F0E4264E200A791E1 /* SQLite.gearbox */,
-				ABA056030E4242D200A791E1 /* MySQL.gearbox */,
+				AB613A6610753630003632B0 /* MySQL.gearbox */,
+				AB613A7710753630003632B0 /* SQLite.gearbox */,
 			);
 			name = PlugIns;
 			sourceTree = "<group>";
 		};
-		ABA642B70E3BE4C0007702E0 /* Dbo */ = {
+		ABA642B70E3BE4C0007702E0 /* Gearbox */ = {
 			isa = PBXGroup;
 			children = (
 				ABA056600E425E8300A791E1 /* Gearbox.h */,
 			);
-			name = Dbo;
+			name = Gearbox;
 			sourceTree = "<group>";
 		};
 		ABB7132D0E5B5E9E00E5513E /* XIB */ = {
@@ -421,6 +428,8 @@
 				AB604A221071169200EFCDB1 /* table.png in Resources */,
 				AB604A5C10714FFE00EFCDB1 /* function.png in Resources */,
 				AB604A841071577700EFCDB1 /* view.png in Resources */,
+				AB613A8510753630003632B0 /* MySQL.gearbox in Resources */,
+				AB613A8610753630003632B0 /* SQLite.gearbox in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +457,7 @@
 				AB60465B106BE68100EFCDB1 /* ShiftOutlineView.m in Sources */,
 				AB604661106BF1DB00EFCDB1 /* ShiftDatabaseConnections.m in Sources */,
 				AB60497410704A6E00EFCDB1 /* ImageAndTextCell.m in Sources */,
+				AB613B6A1077AB32003632B0 /* ShiftOperations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,7 +20,6 @@
 #import "KeyChain.h"
 #import "ShiftWindowController.h"
 #import "ShiftOutlineNode.h"
-#import "Gearbox.h"
 
 @interface PreferenceWindow : NSWindow {
 

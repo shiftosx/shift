@@ -23,6 +23,8 @@
 
 }
 
++ (ShiftErrorHandler *)errorHandler;
+
 - (NSString *)errorTitle:(id)gbClass;
 
 - (void) invalidQuery:(NSNotification *)notification;

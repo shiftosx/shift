@@ -27,6 +27,8 @@
 
 @protocol Gearbox
 
+@property (retain) NSDictionary * gbConnection;
+
 // informative functions
 + (NSString *) gbTitle;
 + (NSImage *) gbIcon;

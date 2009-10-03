@@ -21,15 +21,20 @@
 
 @implementation ShiftAppDelegate
 
-@synthesize gearboxes;
-@synthesize errorHandler;
-@synthesize connections;
-
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification
 {
-	[self reloadGearboxes];
-	errorHandler = [[[ShiftErrorHandler alloc] init] retain];
-	connections = [[[ShiftDatabaseConnections alloc] init] retain];
+}
+
+- (ShiftErrorHandler *)errorHandler
+{
+	return [ShiftErrorHandler errorHandler];
+}
+
+- (NSDictionary *)gearboxes
+{
+	if (!gearboxes)
+		[self reloadGearboxes];
+	return gearboxes;
 }
 
 - (void) reloadGearboxes
@@ -51,8 +56,8 @@
 {
 	NSBundle *bundle = [[self gearboxes] objectForKey:type];
 	id gearbox = [[[bundle principalClass] alloc] init];
-	[[NSNotificationCenter defaultCenter] addObserver:errorHandler selector:@selector(invalidQuery:) name:GBNotificationInvalidQuery object:gearbox];
-	[[NSNotificationCenter defaultCenter] addObserver:errorHandler selector:@selector(connectionFailed:) name:GBNotificationConnectionFailed object:gearbox];
+	[[NSNotificationCenter defaultCenter] addObserver:[self errorHandler] selector:@selector(invalidQuery:) name:GBNotificationInvalidQuery object:gearbox];
+	[[NSNotificationCenter defaultCenter] addObserver:[self errorHandler] selector:@selector(connectionFailed:) name:GBNotificationConnectionFailed object:gearbox];
 	return gearbox;
 }
 

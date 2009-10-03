@@ -25,6 +25,8 @@
 
 @property (retain) NSMutableDictionary * connections;
 
++ (ShiftDatabaseConnections *) databaseConnections;
+
 - (id<Gearbox>)connect:(NSDictionary *)connection;
 - (void)disconnect:(id)connection;
 

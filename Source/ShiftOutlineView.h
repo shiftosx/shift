@@ -18,21 +18,23 @@
 #import <Cocoa/Cocoa.h>
 #import "ShiftOutlineNode.h"
 #import "ShiftDatabaseConnections.h"
+#import "ShiftOperations.h"
 
 @interface ShiftOutlineView : NSOutlineView <NSOutlineViewDelegate, NSOutlineViewDataSource>{
 	NSMutableArray *contents;
 	ShiftOutlineNode *root;
 }
 
-@property (retain) NSMutableArray * contents;
+@property (retain) NSMutableArray *contents;
 @property (readonly) ShiftDatabaseConnections *connections;
+@property (readonly) ShiftOperations *operations;
 
 - (NSArray *)filterNodeArray:(NSMutableArray *)nodeArray withSource:(NSArray *)source;
 - (void)reloadSchemas:(NSArray *)schemas forServerNode:(ShiftOutlineNode *)node;
 - (void)reloadStrings:(NSArray *)strings forSchemaNode:(ShiftOutlineNode *)node withType:(NSString *)type;
 - (void)reloadServerList:(NSArray *)favorites;
 
-- (IBAction)disconnect:(id)sender;
+- (void)disconnect:(id)sender;
 
 - (void)toggleSourceItem:(id)sender;
 

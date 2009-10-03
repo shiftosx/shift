@@ -20,6 +20,16 @@
 
 @implementation ShiftErrorHandler
 
+ShiftErrorHandler *sharedErrorHandler = nil;
++ (ShiftErrorHandler *)errorHandler
+{
+    if (!sharedErrorHandler) {
+        sharedErrorHandler = [[self alloc] init];
+    }
+    return sharedErrorHandler;	
+	
+}
+
 - (NSString *)errorTitle:(Class)gbClass
 {
 	return [NSString stringWithFormat:@"%@ : %@",NSLocalizedString(@"Shift", @"Shift"), [gbClass gbTitle]];

@@ -48,5 +48,6 @@ PreferenceWindowController *sharedPreferencesWindowInstance = nil;
 	[preferenceAdvanced setGearboxes:[(ShiftAppDelegate *)[NSApp delegate] gearboxes]];
 	[preferenceAdvanced reloadData];
 	[preferenceAdvanced performSelector:[preferenceAdvanced action]];
+
 }
 @end

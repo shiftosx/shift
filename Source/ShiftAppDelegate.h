@@ -17,19 +17,14 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ShiftErrorHandler.h"
-#import "ShiftDatabaseConnections.h"
 
 
 @interface ShiftAppDelegate : NSObject {
 	NSDictionary *gearboxes;
-	
-	ShiftErrorHandler *errorHandler;
-	ShiftDatabaseConnections *connections;
 }
 
 @property (readonly) NSDictionary *gearboxes;
 @property (readonly) ShiftErrorHandler *errorHandler;
-@property (readonly) ShiftDatabaseConnections *connections;
 
 - (void) reloadGearboxes;
 - (id) gearboxForType:(NSString *)type;

@@ -23,6 +23,15 @@
 
 @synthesize connections;
 
+ShiftDatabaseConnections *sharedDatabaseConnections = nil;
++ (ShiftDatabaseConnections *) databaseConnections
+{
+    if (!sharedDatabaseConnections) {
+        sharedDatabaseConnections = [[self alloc] init];
+    }
+    return sharedDatabaseConnections;	
+}
+
 - (id) init
 {
 	self = [super init];
@@ -43,6 +52,7 @@
 	id<Gearbox> gearbox = [self gearboxForConnection:connection];
 	if (![gearbox isConnected])
 		[gearbox connect:connection];
+
 	return gearbox;
 }
 
@@ -66,7 +76,7 @@
 - (id<Gearbox>)gearboxForConnection:(NSDictionary *)connection
 {
 	id<Gearbox> gearbox = [connections objectForKey:[connection objectForKey:@"uuid"]];
-	if (gearbox == nil && connection){
+	if (gearbox == nil){
 		gearbox = [(ShiftAppDelegate *)[NSApp delegate] gearboxForType:[connection objectForKey:@"type"]];
 		[connections setObject:gearbox forKey:[connection objectForKey:@"uuid"]];
 	}

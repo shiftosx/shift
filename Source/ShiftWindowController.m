@@ -17,7 +17,6 @@
 
 #import "ShiftWindowController.h"
 #import "ShiftAppDelegate.h"
-#import "Gearbox.h"
 
 @implementation ShiftWindowController
 

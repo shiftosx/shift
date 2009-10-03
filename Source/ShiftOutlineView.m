@@ -45,7 +45,12 @@
 
 - (ShiftDatabaseConnections *)connections
 {
-	return [(ShiftAppDelegate *)[NSApp delegate] connections];	
+	return [ShiftDatabaseConnections databaseConnections];
+}
+
+- (ShiftOperations *)operations
+{
+	return [ShiftOperations operations];
 }
 
 //toggleSourceItem - serverOutline's double click handler
@@ -128,7 +133,7 @@
 	[super dealloc];
 }
 
-- (IBAction)disconnect:(id)sender
+- (void)disconnect:(id)sender
 {
 	id item = [sender itemAtRow:[sender clickedRow]];
 	[[self connections] disconnect:[item info]];
@@ -276,16 +281,7 @@
 - (void)outlineViewItemWillExpand:(NSNotification *)notification
 {
 	id item = [[notification userInfo] objectForKey:@"NSObject"];
-	if ([[item type] isEqual:ShiftOutlineServerNode]) {
-		NSDictionary *favorite = [item info];
-		//warning: this really needs to be threaded. a slow connection would hang the app
-		id<Gearbox> gearbox = [[self connections] connect:favorite];
-		
-		if ([gearbox isConnected]){
-			[self reloadSchemas:[gearbox listSchemas:nil] forServerNode:item];
-		}
-		
-	}else if ([[item type] isEqual:ShiftOutlineFeatureNode]) {
+	if ([[item type] isEqual:ShiftOutlineFeatureNode]) {
 		NSString *feature = [[item info] objectForKey:@"feature"];
 		NSDictionary *favorite = [[self findServerNodeFor:item] info];
 		id<Gearbox> gearbox = [[self connections] gearboxForConnection:favorite];
@@ -323,5 +319,35 @@
 			}
 		}
 	}
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldExpandItem:(id)item
+{
+	if ([[item type] isEqual:ShiftOutlineServerNode]) {
+		NSDictionary *connection = [item info];
+		id gearbox = [[self connections] gearboxForConnection:connection];
+		if ([gearbox isConnected]){
+			[self reloadSchemas:[gearbox listSchemas:nil] forServerNode:item];
+			return YES;
+		}
+		SEL connect = @selector(connect:);
+		NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[ShiftDatabaseConnections instanceMethodSignatureForSelector:connect]];
+		[invocation setTarget:[self connections]];
+		[invocation setSelector:connect];
+		[invocation setArgument:&connection atIndex:2];
+
+		void (^completionBlock)(void);
+		completionBlock = ^(void){
+			if ([gearbox isConnected]){
+				[self reloadSchemas:[gearbox listSchemas:nil] forServerNode:item];
+				[self reloadItem:item reloadChildren:YES];
+				[self expandItem:item];			
+			}
+		};
+		[[self operations] addInvocation:invocation withCompletionBlock:completionBlock forConnection:connection];
+		return [gearbox isConnected];
+	}
+	
+	return YES;
 }
 @end

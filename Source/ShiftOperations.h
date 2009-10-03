@@ -15,14 +15,16 @@
  * or see <http://www.gnu.org/licenses/>.
  */
 
-#import "PreferenceWindow.h"
-#import "ShiftAppDelegate.h"
+#import <Cocoa/Cocoa.h>
 
-@implementation PreferenceWindow
 
-- (BOOL)canBecomeMainWindow
-{
-	return NO;
+@interface ShiftOperations : NSObject {
+	NSMutableDictionary *operations;
 }
+
++ (ShiftOperations *)operations;
+
+- (NSOperationQueue *)queueForConnection:(NSDictionary *)connection;
+- (NSInvocationOperation *)addInvocation:(NSInvocation *)invocation withCompletionBlock:(void (^)(void))block forConnection:(NSDictionary *)connection;
 
 @end
