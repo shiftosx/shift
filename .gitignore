@@ -2,3 +2,4 @@
 *.mode1v3
 .DS_Store
 PlugIns/*
+Frameworks/ShiftGearbox.framework

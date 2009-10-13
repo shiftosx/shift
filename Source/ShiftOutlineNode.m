@@ -14,7 +14,7 @@
  * write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA 
  * or see <http://www.gnu.org/licenses/>.
  */
-
+#import <ShiftGearbox/ShiftGearbox.h>
 #import "ShiftOutlineNode.h"
 
 @implementation ShiftOutlineNode
@@ -25,7 +25,7 @@
 @synthesize children;
 @synthesize image;
 @synthesize isLeaf;
-@synthesize info;
+@synthesize object;
 
 // -------------------------------------------------------------------------------
 //	init:
@@ -54,14 +54,14 @@
 	return self;
 }
 
-- (id)initFromFavorite:(NSDictionary*)favorite
+- (id)initFromConnection:(GBConnection *)connection
 {
 	if (self = [self init])
 	{
 		[self setType:ShiftOutlineServerNode];
-		[self setInfo:[favorite copy]];
-		[self setTitle:[favorite objectForKey:@"name"]];
-		[self setToolTip:[NSString stringWithFormat:@"%@%@",[favorite objectForKey:@"user"],[favorite objectForKey:@"host"]]];
+		self.object = connection;
+		[self setTitle:connection.name];
+		[self setToolTip:[NSString stringWithFormat:@"%@%@", connection.name, connection.uuid]];
 		if ([[self title] isEqualToString:nil])
 			[self setTitle:[self toolTip]];
 		

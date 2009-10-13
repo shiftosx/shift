@@ -16,6 +16,6 @@
  */
 "GBFeatureTable" = "Tables";
 "GBFeatureView" = "Views";
-"GBFeatureStoredProc" = "Stored Procedures";
+"GBFeatureStoredProcedure" = "Stored Procedures";
 "GBFeatureFunction" = "Functions";
 "GBFeatureTrigger" = "Triggers";

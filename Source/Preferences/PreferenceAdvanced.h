@@ -18,8 +18,6 @@
 #import <Cocoa/Cocoa.h>
 
 @interface PreferenceAdvanced : NSTableView <NSTableViewDelegate, NSTableViewDataSource>{
-	IBOutlet NSImageView *splitResizeControl;
-	
 	IBOutlet NSView *advancedView;
 	NSDictionary *gearboxes;
 	NSArray *gearboxesTitles;

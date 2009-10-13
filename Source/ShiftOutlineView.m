@@ -14,6 +14,7 @@
  * write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA 
  * or see <http://www.gnu.org/licenses/>.
  */
+#import <ShiftGearbox/ShiftGearbox.h>
 
 #import "ShiftOutlineView.h"
 #import "ShiftAppDelegate.h"
@@ -75,7 +76,7 @@
 		//remove deleted itmes, and add new items, perhaps favorites should have a unique id with them that makes tracking changes easier?
 		//that will allow the list to preserve it's expanded states
 		for (int i=0; i<[favorites count]; i++) {
-			[contents addObject:[[ShiftOutlineNode alloc] initFromFavorite:[favorites objectAtIndex:i]]];
+			[contents addObject:[[ShiftOutlineNode alloc] initFromConnection:[favorites objectAtIndex:i]]];
 		}
 	}
 	[self reloadData];
@@ -84,14 +85,17 @@
 - (NSArray *)filterNodeArray:(NSMutableArray *)nodeArray withSource:(NSArray *)source
 {
 	NSMutableArray *filteredArray = [NSMutableArray array];
+	NSArray *sourceNames = [source valueForKey:@"name"];
 	for (int i = 0; i < [nodeArray count]; i++)
 	{
 		ShiftOutlineNode *node = [nodeArray objectAtIndex:i];
-		if (![source containsObject:[node title]]) {
+		if ([sourceNames containsObject:[node title]]) {
 			[nodeArray removeObjectAtIndex:i];
 			--i;
-		}else
+		}else{
 			[filteredArray addObject:[node title]];
+		}
+		
 	}
 	return [NSArray arrayWithArray:filteredArray];
 }
@@ -102,23 +106,26 @@
 	NSArray *titles = [self filterNodeArray:[node children] withSource:schemas];
 	
 	for (int i = 0; i < [schemas count]; i++) {
-		NSString *schema = [schemas objectAtIndex:i];
-		NSUInteger index = [titles indexOfObject:schema];
-		if (index == NSNotFound)
-			[node insertChild:[[ShiftOutlineNode alloc] initWithTitle:schema andType:ShiftOutlineSchemaNode] atIndex:i];
+		GBSchema *schema = [schemas objectAtIndex:i];
+		NSUInteger index = [titles indexOfObject:schema.name];
+		if (index == NSNotFound){
+			ShiftOutlineNode *item = [[ShiftOutlineNode alloc] initWithTitle:schema.name andType:ShiftOutlineSchemaNode];
+			item.object = schema;
+			[node insertChild:item atIndex:i]; 
+		}
 	}
 }
 
 //reloadSchemas: forServerNode: needs to be smarter.... this is just to get things moving
-- (void)reloadStrings:(NSArray *)strings forSchemaNode:(ShiftOutlineNode *)node withType:(NSString *)type
+- (void)reloadStrings:(NSArray *)objs forSchemaNode:(ShiftOutlineNode *)node withType:(NSString *)type
 {
-	NSArray *titles = [self filterNodeArray:[node children] withSource:strings];
+	NSArray *titles = [self filterNodeArray:[node children] withSource:objs];
 	
-	for (int i = 0; i < [strings count]; i++) {
-		NSString *string = [strings objectAtIndex:i];
-		NSUInteger index = [titles indexOfObject:string];
+	for (int i = 0; i < [objs count]; i++) {
+		id obj = [objs objectAtIndex:i];
+		NSUInteger index = [titles indexOfObject:obj];
 		if (index == NSNotFound){
-			ShiftOutlineNode *stringNode = [[ShiftOutlineNode alloc] initWithTitle:string andType:type];
+			ShiftOutlineNode *stringNode = [[ShiftOutlineNode alloc] initWithTitle:[obj name] andType:type];
 			[stringNode setIsLeaf:YES];
 			[node insertChild:stringNode atIndex:i];
 		}
@@ -136,7 +143,7 @@
 - (void)disconnect:(id)sender
 {
 	id item = [sender itemAtRow:[sender clickedRow]];
-	[[self connections] disconnect:[item info]];
+	[[self connections] disconnect:[item object]];
 	[sender collapseItem:item];
 }
 
@@ -188,7 +195,7 @@
 	if ([[tableColumn identifier] isEqual:OutlineTitleColumn]) {
 		return [item title];
 	}else if ([[item type] isEqual:ShiftOutlineServerNode]){
-		return [NSNumber numberWithInt:([[[self connections] gearboxForConnection:[item info]] isConnected]) ? NSOnState : NSOffState];
+		return [NSNumber numberWithInt:([[[self connections] gearboxForConnection:[item object]] isConnected]) ? NSOnState : NSOffState];
 	}
 
 	
@@ -249,7 +256,7 @@
 			[cell setImage:[NSImage imageNamed:@"table.png"]];
 		}else if ([[item type] isEqual:ShiftOutlineViewNode]) {
 			[cell setImage:[NSImage imageNamed:@"view.png"]];
-		}else if ([[item type] isEqual:ShiftOutlineStoredProcNode]) {
+		}else if ([[item type] isEqual:ShiftOutlineStoredProcedureNode]) {
 			[cell setImage:[NSImage imageNamed:@"storedproc.png"]];
 		}else if ([[item type] isEqual:ShiftOutlineFunctionNode]) {
 			[cell setImage:[NSImage imageNamed:@"function.png"]];
@@ -261,7 +268,7 @@
 
 
 	}else if ([[tableColumn identifier] isEqual:OutlineImageColumn]){
-		if ([[item type] isEqual:ShiftOutlineServerNode] && [[[self connections] gearboxForConnection:[item info]] isConnected]){
+		if ([[item type] isEqual:ShiftOutlineServerNode] && [[[self connections] gearboxForConnection:[item object]] isConnected]){
 			if ([olv itemAtRow:[olv selectedRow]] == item)
 				[cell setImage:[NSImage imageNamed:@"eject_hot.png"]];
 			else
@@ -282,39 +289,40 @@
 {
 	id item = [[notification userInfo] objectForKey:@"NSObject"];
 	if ([[item type] isEqual:ShiftOutlineFeatureNode]) {
-		NSString *feature = [[item info] objectForKey:@"feature"];
-		NSDictionary *favorite = [[self findServerNodeFor:item] info];
-		id<Gearbox> gearbox = [[self connections] gearboxForConnection:favorite];
+		NSString *feature = [[item object] objectForKey:@"feature"];
+		GBSchema *schema = [[self parentForItem:item] object];
 		NSString *type;
 		NSArray *strings;
 
-		[gearbox selectSchema:[[self parentForItem:item] title]];
+		[schema.server selectSchema:schema];
 
 		if ([feature isEqual:GBFeatureTable]) {
-			strings = [gearbox listTables:nil];
+			strings = [schema listTables:nil];
 			type = ShiftOutlineTableNode;
 		}else if ([feature isEqual:GBFeatureView]) {
-			strings = [gearbox listViews:nil];
+			strings = [schema listViews:nil];
 			type = ShiftOutlineViewNode;
+		}else if ([feature isEqual:GBFeatureStoredProcedure]) {
+			strings = [schema listStoredProcedures:nil];
+			type = ShiftOutlineStoredProcedureNode;
 		}else if ([feature isEqual:GBFeatureFunction]) {
-			strings = [gearbox listFunctions:nil];
+			strings = [schema listFunctions:nil];
 			type = ShiftOutlineFunctionNode;
 		}else if ([feature isEqual:GBFeatureTrigger]) {
-			strings = [gearbox listTriggers:nil];
+			strings = [schema listTriggers:nil];
 			type = ShiftOutlineTriggerNode;
 		}
 
 		[self reloadStrings:strings forSchemaNode:item withType:type];
 		
 	}else if ([[item type] isEqual:ShiftOutlineSchemaNode]) {
-		NSDictionary *favorite = [[self findServerNodeFor:item] info];
-		id<Gearbox> gearbox = [[self connections] gearboxForConnection:favorite];
+		GBSchema *schema = [item object];
 
 		if ([[item children] count] == 0) {
-			NSArray *features = [gearbox gbFeatures];
+			NSArray *features = [schema supportedFeatures];
 			for (NSString *feature in features) {
 				ShiftOutlineNode *featureNode = [[ShiftOutlineNode alloc] initWithTitle:NSLocalizedString(feature, feature) andType:ShiftOutlineFeatureNode];
-				[featureNode setInfo:[NSDictionary dictionaryWithObject:feature forKey:@"feature"]];
+				featureNode.object = [NSDictionary dictionaryWithObject:feature forKey:@"feature"];
 				[item appendChild:featureNode];
 			}
 		}
@@ -324,7 +332,7 @@
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldExpandItem:(id)item
 {
 	if ([[item type] isEqual:ShiftOutlineServerNode]) {
-		NSDictionary *connection = [item info];
+		GBConnection *connection = [item object];
 		id gearbox = [[self connections] gearboxForConnection:connection];
 		if ([gearbox isConnected]){
 			[self reloadSchemas:[gearbox listSchemas:nil] forServerNode:item];
@@ -341,7 +349,7 @@
 			if ([gearbox isConnected]){
 				[self reloadSchemas:[gearbox listSchemas:nil] forServerNode:item];
 				[self reloadItem:item reloadChildren:YES];
-				[self expandItem:item];			
+				[self expandItem:item];
 			}
 		};
 		[[self operations] addInvocation:invocation withCompletionBlock:completionBlock forConnection:connection];

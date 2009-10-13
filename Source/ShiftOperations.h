@@ -17,6 +17,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class GBConnection;
 
 @interface ShiftOperations : NSObject {
 	NSMutableDictionary *operations;
@@ -24,7 +25,7 @@
 
 + (ShiftOperations *)operations;
 
-- (NSOperationQueue *)queueForConnection:(NSDictionary *)connection;
-- (NSInvocationOperation *)addInvocation:(NSInvocation *)invocation withCompletionBlock:(void (^)(void))block forConnection:(NSDictionary *)connection;
+- (NSOperationQueue *)queueForConnection:(GBConnection *)connection;
+- (NSInvocationOperation *)addInvocation:(NSInvocation *)invocation withCompletionBlock:(void (^)(void))block forConnection:(GBConnection *)connection;
 
 @end

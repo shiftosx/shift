@@ -16,8 +16,9 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "KeyChain.h"
 #import "ShiftOutlineView.h"
+
+@class GBServer;
 
 @interface PreferenceServers : NSTableView <NSTableViewDelegate, NSTableViewDataSource> {
 	//favorites
@@ -34,14 +35,14 @@
 	IBOutlet NSButton *editFavorite;
 	
 	Class dboType;
-	id dboSource;
+	GBServer *gearbox;
 }
 
 - (ShiftOutlineView *) mainWindowController;
 
 //favorites methods
-- (void) loadFavoriteEditor:(NSDictionary *)favorite;
-- (void) loadFavoriteEditorForBundle:(NSString *)bundleName withFavorite:(NSDictionary *)favorite;
+- (void) loadConnectionEditor:(GBConnection *)connection;
+- (void) loadConnectionEditorForGearboxType:(NSString *)gearboxType withConnection:(GBConnection *)connection;
 - (IBAction) addFavorite:(id)sender;
 - (IBAction) editFavorite:(id)sender;
 - (IBAction) removeFavorite:(id)sender;

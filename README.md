@@ -1,3 +1,4 @@
-== Shift 0.5 ==
+Shift
+===
 
-Shift 0.5 is a complete rewrite.  If you want a functional db app, please check out the 0.3 branch.  The 0.3 codebase is based off CocoaMySQL and is no longer maintained at this point.
+Shift is a new OS X app for interacting with multiple databases. It is being built with the intent of supporting new database types through plugins.

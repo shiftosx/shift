@@ -16,7 +16,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "Gearbox.h"
+#import <ShiftGearbox/ShiftGearbox.h>
 
 
 @interface ShiftErrorHandler : NSObject {

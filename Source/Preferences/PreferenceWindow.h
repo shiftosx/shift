@@ -17,7 +17,6 @@
 
 #import <Cocoa/Cocoa.h>
 #import "NSWindow.h"
-#import "KeyChain.h"
 #import "ShiftWindowController.h"
 #import "ShiftOutlineNode.h"
 

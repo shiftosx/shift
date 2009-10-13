@@ -32,7 +32,7 @@ ShiftErrorHandler *sharedErrorHandler = nil;
 
 - (NSString *)errorTitle:(Class)gbClass
 {
-	return [NSString stringWithFormat:@"%@ : %@",NSLocalizedString(@"Shift", @"Shift"), [gbClass gbTitle]];
+	return [NSString stringWithFormat:@"%@ : %@",NSLocalizedString(@"Shift", @"Shift"), [gbClass type]];
 }
 
 - (void) invalidQuery:(NSNotification *)notification

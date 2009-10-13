@@ -17,19 +17,20 @@
 
 #import <Cocoa/Cocoa.h>
 
-#define ShiftOutlineRootNode           @"ShiftOutlineRootNode"
-#define ShiftOutlineServerNode         @"ShiftOutlineServerNode"
+#define ShiftOutlineRootNode                @"ShiftOutlineRootNode"
+#define ShiftOutlineServerNode              @"ShiftOutlineServerNode"
 
-#define ShiftOutlineSchemaNode         @"ShiftOutlineSchemaNode"
+#define ShiftOutlineSchemaNode              @"ShiftOutlineSchemaNode"
 
-#define ShiftOutlineFeatureNode        @"ShiftOutlineFeatureNode"
+#define ShiftOutlineFeatureNode             @"ShiftOutlineFeatureNode"
 
-#define ShiftOutlineTableNode          @"ShiftOutlineTableNode"
-#define ShiftOutlineViewNode           @"ShiftOutlineViewNode"
-#define ShiftOutlineStoredProcNode     @"ShiftOutlineStoredProcNode"
-#define ShiftOutlineFunctionNode       @"ShiftOutlineFunctionNode"
-#define ShiftOutlineTriggerNode        @"ShiftOutlineTriggerNode"
+#define ShiftOutlineTableNode               @"ShiftOutlineTableNode"
+#define ShiftOutlineViewNode                @"ShiftOutlineViewNode"
+#define ShiftOutlineStoredProcedureNode     @"ShiftOutlineStoredProcedureNode"
+#define ShiftOutlineFunctionNode            @"ShiftOutlineFunctionNode"
+#define ShiftOutlineTriggerNode             @"ShiftOutlineTriggerNode"
 
+@class GBConnection;
 
 @interface ShiftOutlineNode : NSObject <NSCoding, NSCopying>
 {
@@ -47,11 +48,11 @@
 @property (retain) NSMutableArray  *children;
 @property (retain) NSImage         *image;
 @property          BOOL             isLeaf;
-@property (retain) NSDictionary    *info;
+@property (retain) id               object;
 
 
 - (id)initLeaf;
-- (id)initFromFavorite:(NSDictionary*)favorite;
+- (id)initFromConnection:(GBConnection *)connection;
 - (id)initWithTitle:(NSString *)nodeTitle andType:(NSString *)nodeType;
 
 - (BOOL)isDraggable;

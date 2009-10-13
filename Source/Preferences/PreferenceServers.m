@@ -15,12 +15,13 @@
  * or see <http://www.gnu.org/licenses/>.
  */
 
+#import <ShiftGearbox/ShiftGearbox.h>
+
 #define FavoritesTableRow @"FavoritesTableRow"
 
 #import "PreferenceServers.h"
 #import "ShiftAppDelegate.h"
 #import "ShiftWindowController.h"
-#import "Gearbox.h"
 #import "ShiftOutlineNode.h"
 #import "NSWindow.h"
 
@@ -36,7 +37,6 @@
 //dealloc
 - (void) dealloc
 {
-	[keychain release];
 	[favorites release];
 	[prefs release];
 	[super dealloc];
@@ -56,7 +56,6 @@
 - (void)awakeFromNib
 {
 	//grab the preferences
-	keychain = [[KeyChain alloc] init];
 	prefs = [[NSUserDefaults standardUserDefaults] retain];
 	favorites = [[NSMutableArray alloc] initWithArray:[prefs objectForKey:@"favorites"]];
 	
@@ -69,44 +68,32 @@
 }
 
 //loadFavoriteEditor
-- (void) loadFavoriteEditor:(NSDictionary *)favorite
+- (void) loadConnectionEditor:(GBConnection *)connection
 {
-	//this method only displays the editor as a sheet
-	//whatever calls it must take care of pre-filling the form fields
-	NSString *dboTypeName;
-	if (favorite == nil)
-		dboTypeName = [dboTypes titleOfSelectedItem];
+	NSString *gearboxType;
+	if (connection == nil)
+		gearboxType = [dboTypes titleOfSelectedItem];
 	else{
-		dboTypeName = [favorite objectForKey:@"type"];
-		[dboTypes selectItemWithTitle:dboTypeName];
+		gearboxType = connection.type;
+		[dboTypes selectItemWithTitle:gearboxType];
 	}
 	
-	[self loadFavoriteEditorForBundle:dboTypeName withFavorite:favorite];
+	[self loadConnectionEditorForGearboxType:gearboxType withConnection:connection];
 	[NSApp beginSheet:favoritesEditorSheet modalForWindow:[self window] modalDelegate:[self window] didEndSelector:nil contextInfo:nil];	
 }
 
 //loadFavoriteEditorForBundle
-- (void) loadFavoriteEditorForBundle:(NSString *)bundleName withFavorite:(NSDictionary *)favorite
+- (void) loadConnectionEditorForGearboxType:(NSString *)gearboxType withConnection:(GBConnection *)connection
 {
-	NSBundle *bundle = [[(ShiftAppDelegate *)[NSApp delegate] gearboxes] objectForKey:bundleName];
 	int heightDiff = [favoritesEditorSheet frame].size.height - [favoritesEditorArea frame].size.height;
 	
 	//release anything that might already be taking the stage
 	[[favoritesEditorArea subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-	dboType = [bundle principalClass];
-	
-	dboSource = [[dboType alloc] init];
-	NSMutableArray*      topLevelObjs = [NSMutableArray array];
-	NSDictionary*        nameTable = [NSDictionary dictionaryWithObjectsAndKeys:
-									  dboSource, NSNibOwner,
-									  topLevelObjs, NSNibTopLevelObjects,
-									  nil];
-	[bundle loadNibFile:@"Editor" externalNameTable:nameTable withZone:nil];
-	[topLevelObjs makeObjectsPerformSelector:@selector(release)];
-	
+	gearbox = [[NSApp delegate] gearboxForType:gearboxType];
+		
 	//ask the plugin for it's view
-	NSView *editor = [dboSource gbEditor];
-	[dboSource gbLoadFavoriteIntoEditor:favorite];
+	NSView *editor = gearbox.editor.editor;
+	gearbox.editor.connection = connection;
 	[favoritesEditorSheet resizeWindowOnSpotWithRect:NSMakeRect(0, 0, [editor frame].size.width, [editor frame].size.height+heightDiff)]; //resize the panel to fit the content
 	[favoritesEditorArea addSubview:editor]; //display it
 	[favoritesEditorSheet recalculateKeyViewLoop];
@@ -116,7 +103,7 @@
 - (IBAction) addFavorite:(id)sender
 {
 	[self deselectAll:sender];
-	[self loadFavoriteEditor:nil];
+	[self loadConnectionEditor:nil];
 }
 
 //editFavorite
@@ -126,19 +113,22 @@
 		return;
 	//a table row is selected
 	//prefill the form with the data stored for that favorite
-	NSMutableDictionary *favorite = [NSMutableDictionary dictionaryWithDictionary:[favorites objectAtIndex:[self selectedRow]]];
-	[favorite setObject:[keychain getPasswordForFavorite:[favorite objectForKey:@"name"] ofType:[favorite objectForKey:@"type"]] forKey:@"password"];
+	NSDictionary *favorite = [favorites objectAtIndex:[self selectedRow]];
+	gearbox = [[NSApp delegate] gearboxForType:[favorite objectForKey:@"type"]];
+	GBConnection *connection = [gearbox createConnection:favorite];
 	
-	[self loadFavoriteEditor:favorite];
+	[self loadConnectionEditor:connection];
 }
 
 //deleteFavorite
 - (IBAction) removeFavorite:(id)sender
 {
-	id favorite = [favorites objectAtIndex:[self selectedRow]];
+	NSDictionary *favorite = [favorites objectAtIndex:[self selectedRow]];
+	GBServer *aGearbox = [[NSApp delegate] gearboxForType:[favorite objectForKey:@"type"]];
+	GBConnection *connection = [aGearbox createConnection:favorite];
 	
-	//remove the password form the keychain
-	[keychain deletePasswordForFavorite:[favorite objectForKey:@"name"] ofType:[favorite objectForKey:@"type"]];
+	//let the connection know it's about to be deleted so it can perform any necessary cleanup
+	[connection connectionWillBeDeleted];
 	
 	//remove it from the favorites array
 	[favorites removeObjectAtIndex:[self selectedRow]];
@@ -159,42 +149,25 @@
 //saveFavorite
 - (IBAction) saveFavorite:(id)sender
 {
-	NSDictionary *editorData;
-	NSMutableDictionary *favorite;
+	GBConnection *connection;
 	
 	// Validate requirements
 	// Would be nice to add in a check for valid connection and pop up a notice if it fails, a'la apple mail
-	editorData = [dboSource gbEditorAsDictionary];
-	if (editorData == nil)
+	connection = gearbox.editor.connection;
+	if (connection == nil)
 		return;
 
-	favorite = [NSMutableDictionary dictionaryWithDictionary:editorData];
-	
-	NSString *password = [favorite objectForKey:@"password"];
-	if ([favorite objectForKey:@"name"] == nil)
-		[favorite setObject:[@"Favorite " stringByAppendingFormat:@"%d",[favorites count]+1] forKey:@"name"];
-	
-	if ([favorite objectForKey:@"uuid"] == nil)
-		[favorite setObject:[[NSProcessInfo processInfo] globallyUniqueString] forKey:@"uuid"];
-
-	[favorite setObject:[dboTypes titleOfSelectedItem] forKey:@"type"];
-
-	//save the password to the keychain
-	if ([password isEqualToString:@""])
-		[keychain deletePasswordForFavorite:[favorite objectForKey:@"name"] ofType:[favorite objectForKey:@"type"]];
-	else if (![[keychain getPasswordForFavorite:[favorite objectForKey:@"name"] ofType:[favorite objectForKey:@"type"]] isEqualToString:password])
-		[keychain setPasswordForFavorite:[favorite objectForKey:@"name"] ofType:[favorite objectForKey:@"type"] to:password];
-	
-	[favorite removeObjectForKey:@"password"];
+	if (connection.name == nil)
+		connection.name = [NSString stringWithFormat:@"%@ %d", connection.type, [favorites count]+1];
 	
 	if ([self selectedRow] != -1){
 		//replace the existing favorite
-		[favorites replaceObjectAtIndex:[self selectedRow] withObject:favorite];
-		[[[[self mainWindowController] contents] objectAtIndex:[self selectedRow]+1] setTitle:[favorite objectForKey:@"name"]];
+		[favorites replaceObjectAtIndex:[self selectedRow] withObject:[connection dictionaryRepresentation]];
+		[[[[self mainWindowController] contents] objectAtIndex:[self selectedRow]+1] setTitle:connection.name];
 	}else{
 		//append the new favorite
-		[favorites addObject:favorite];
-		[[[self mainWindowController] contents] addObject:[[ShiftOutlineNode alloc] initFromFavorite:favorite]];
+		[favorites addObject:[connection dictionaryRepresentation]];
+		[[[self mainWindowController] contents] addObject:[[ShiftOutlineNode alloc] initFromConnection:connection]];
 	}
 	
 	//save the new favorites list
@@ -220,13 +193,16 @@
 
 - (IBAction) selectDbType:(id)sender
 {
-	NSMutableDictionary *favorite = nil;
+	GBConnection *connection = nil;
 	if ([self selectedRow] > -1){
-		favorite = [NSMutableDictionary dictionaryWithDictionary:[favorites objectAtIndex:[self selectedRow]]];
-		[favorite setObject:[keychain getPasswordForFavorite:[favorite objectForKey:@"host"] ofType:[favorite objectForKey:@"user"]] forKey:@"password"];
+		//we're changing so we need to make a new connection that will be understood by all gearboxes
+		
+		id aGearbox = [[NSApp delegate] gearboxForType:[[sender selectedItem] title]];
+		connection = [aGearbox createConnection:[gearbox.editor.connection dictionaryRepresentation]];
+		gearbox = aGearbox;
 	}
 	
-	[self loadFavoriteEditorForBundle:[sender titleOfSelectedItem] withFavorite:favorite];
+	[self loadConnectionEditorForGearboxType:[sender title] withConnection:connection];
 }
 
 

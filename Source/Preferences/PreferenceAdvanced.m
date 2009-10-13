@@ -15,10 +15,11 @@
  * or see <http://www.gnu.org/licenses/>.
  */
 
+#import <ShiftGearbox/ShiftGearbox.h>
+
 #import "PreferenceAdvanced.h"
 #import "ShiftAppDelegate.h"
 #import "NSWindow.h"
-#import "Gearbox.h"
 
 @implementation PreferenceAdvanced
 
@@ -60,9 +61,9 @@
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
 	NSString *title = [gearboxesTitles objectAtIndex:rowIndex];
-	NSImage *icon = [[[gearboxes objectForKey:title] principalClass] gbIcon];
+//	NSImage *icon = [[[gearboxes objectForKey:title] principalClass] gbIcon];
 	NSDictionary *cellData = [NSDictionary dictionaryWithObjectsAndKeys:title,@"title",
-							 [NSArchiver archivedDataWithRootObject:icon],@"image",
+//							 [NSArchiver archivedDataWithRootObject:[NSImage imageNamed:NSImageNameMobileMe]],@"image",
 							   nil];
 	return cellData;
 }
@@ -70,41 +71,11 @@
 #pragma mark other
 
 - (void) loadAdvancedView:(id)sender{
-	NSBundle *bundle = [[(ShiftAppDelegate *)[NSApp delegate] gearboxes] objectForKey:[gearboxesTitles objectAtIndex:[self selectedRow]]];
+	GBServer *gearbox = [[NSApp delegate] gearboxForType:[gearboxesTitles objectAtIndex:[self selectedRow]]];
 
 	[[advancedView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-
-	id dboSource = [[[bundle principalClass] alloc] init];
-//	NSMutableArray*      topLevelObjs = [NSMutableArray array];
-//	NSDictionary*        nameTable = [NSDictionary dictionaryWithObjectsAndKeys:
-//									  dboSource, NSNibOwner,
-//									  topLevelObjs, NSNibTopLevelObjects,
-//									  nil];
-//	[bundle loadNibFile:@"Advanced" externalNameTable:nameTable withZone:nil];
-//	[topLevelObjs makeObjectsPerformSelector:@selector(release)];
 	
 	//ask the plugin for it's advanced view
-	NSView *advancedSubview = [dboSource gbAdvanced];
-	[advancedView addSubview:advancedSubview]; //display it
+	[advancedView addSubview:gearbox.preferences.preferences]; //display it
 }
-
-#pragma mark NSSplitView delegate methos
-
-// constrain gearbox list max size
-- (CGFloat)splitView:(NSSplitView *)sender constrainMaxCoordinate:(CGFloat)proposedMax ofSubviewAt:(NSInteger)offset
-{
-	return 150;
-}
-
-// constrain gearbox list min size
-- (CGFloat)splitView:(NSSplitView *)sender constrainMinCoordinate:(CGFloat)proposedMin ofSubviewAt:(NSInteger)offset
-{
-	return 100;
-}
-
-//handles resizing from the bottom bar
--(NSRect)splitView:(NSSplitView *)splitView additionalEffectiveRectOfDividerAtIndex:(NSInteger)dividerIndex {
-	return [splitResizeControl convertRect:[splitResizeControl bounds] toView:splitView]; 
-}
-
 @end

@@ -22,7 +22,6 @@
 		AB2D372F0E5E2DDF00BEACED /* PreferenceAdvanced.m in Sources */ = {isa = PBXBuildFile; fileRef = AB2D372E0E5E2DDF00BEACED /* PreferenceAdvanced.m */; };
 		AB2D39190E621D7000BEACED /* Gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2D39170E621D7000BEACED /* Gradient.png */; };
 		AB2D391A0E621D7000BEACED /* ResizeControl.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2D39180E621D7000BEACED /* ResizeControl.png */; };
-		AB2D57EC0E00ACD7003FE881 /* KeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = AB2D57EB0E00ACD7003FE881 /* KeyChain.m */; };
 		AB2D57F60E00AE24003FE881 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2D57F50E00AE24003FE881 /* Security.framework */; };
 		AB4B7C2F0DE9056900CC7D07 /* Shift.icns in Resources */ = {isa = PBXBuildFile; fileRef = AB4B7C2E0DE9056900CC7D07 /* Shift.icns */; };
 		AB54F5940DE9FAAF00A5B233 /* ShiftWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB54F5920DE9FAAF00A5B233 /* ShiftWindowController.m */; };
@@ -54,6 +53,8 @@
 		ABB711CE0E5B268700E5513E /* ShiftAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB711CD0E5B268700E5513E /* ShiftAppDelegate.m */; };
 		ABC2410C0DF8BA750099E88E /* PreferenceWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC2410B0DF8BA750099E88E /* PreferenceWindow.m */; };
 		ABDDB84A0DFD94CF00D940FF /* NSWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDDB8490DFD94CF00D940FF /* NSWindow.m */; };
+		ABE2A8B0107A7C8A004F2E4A /* ShiftGearbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE2A8AF107A7C8A004F2E4A /* ShiftGearbox.framework */; };
+		ABE2A8B3107A7C94004F2E4A /* ShiftGearbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE2A8AF107A7C8A004F2E4A /* ShiftGearbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,6 +65,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				AB604AC6107161A300EFCDB1 /* BWToolkitFramework.framework in Frameworks */,
+				ABE2A8B3107A7C94004F2E4A /* ShiftGearbox.framework in Frameworks */,
 				AB7B13221067F2110015202F /* Sparkle.framework in Frameworks */,
 			);
 			name = Frameworks;
@@ -107,8 +109,6 @@
 		AB2D372E0E5E2DDF00BEACED /* PreferenceAdvanced.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferenceAdvanced.m; path = Source/Preferences/PreferenceAdvanced.m; sourceTree = "<group>"; };
 		AB2D39170E621D7000BEACED /* Gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gradient.png; sourceTree = "<group>"; };
 		AB2D39180E621D7000BEACED /* ResizeControl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ResizeControl.png; sourceTree = "<group>"; };
-		AB2D57EA0E00ACD7003FE881 /* KeyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyChain.h; path = Source/Utilities/KeyChain.h; sourceTree = "<group>"; };
-		AB2D57EB0E00ACD7003FE881 /* KeyChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyChain.m; path = Source/Utilities/KeyChain.m; sourceTree = "<group>"; };
 		AB2D57F50E00AE24003FE881 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		AB4B7C2E0DE9056900CC7D07 /* Shift.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Shift.icns; sourceTree = "<group>"; };
 		AB54F5920DE9FAAF00A5B233 /* ShiftWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftWindowController.m; path = Source/ShiftWindowController.m; sourceTree = "<group>"; };
@@ -141,7 +141,6 @@
 		AB918BC20E57D45700A3CC83 /* ShiftBundle.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ShiftBundle.icns; sourceTree = "<group>"; };
 		ABA054450E42331200A791E1 /* CenteredTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CenteredTextFieldCell.h; path = Source/Interface/CenteredTextFieldCell.h; sourceTree = "<group>"; };
 		ABA054460E42331200A791E1 /* CenteredTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CenteredTextFieldCell.m; path = Source/Interface/CenteredTextFieldCell.m; sourceTree = "<group>"; };
-		ABA056600E425E8300A791E1 /* Gearbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gearbox.h; path = Source/Dbo/Gearbox.h; sourceTree = "<group>"; };
 		ABB711960E5B15B200E5513E /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = Resources/XIB/English.lproj/Preferences.xib; sourceTree = "<group>"; };
 		ABB7119A0E5B16A800E5513E /* PreferenceWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferenceWindowController.h; path = Source/Preferences/PreferenceWindowController.h; sourceTree = "<group>"; };
 		ABB7119B0E5B16A800E5513E /* PreferenceWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferenceWindowController.m; path = Source/Preferences/PreferenceWindowController.m; sourceTree = "<group>"; };
@@ -151,6 +150,7 @@
 		ABC2410B0DF8BA750099E88E /* PreferenceWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferenceWindow.m; path = Source/Preferences/PreferenceWindow.m; sourceTree = "<group>"; };
 		ABDDB8480DFD94CF00D940FF /* NSWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSWindow.h; path = Source/Utilities/NSWindow.h; sourceTree = "<group>"; };
 		ABDDB8490DFD94CF00D940FF /* NSWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSWindow.m; path = Source/Utilities/NSWindow.m; sourceTree = "<group>"; };
+		ABE2A8AF107A7C8A004F2E4A /* ShiftGearbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ShiftGearbox.framework; path = Frameworks/ShiftGearbox.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +162,7 @@
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				AB2D57F60E00AE24003FE881 /* Security.framework in Frameworks */,
 				AB604A951071619C00EFCDB1 /* BWToolkitFramework.framework in Frameworks */,
+				ABE2A8B0107A7C8A004F2E4A /* ShiftGearbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,7 +172,6 @@
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				ABA642B70E3BE4C0007702E0 /* Gearbox */,
 				AB2D35370E5BA2A000BEACED /* Interface */,
 				AB86B1CC0E47F656003CB3AD /* Preferences */,
 				AB6B51DE0DFE170200D35E8E /* Utilities */,
@@ -204,6 +204,7 @@
 				AB2D57F50E00AE24003FE881 /* Security.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				AB7B12DA1067EFCF0015202F /* Sparkle.framework */,
+				ABE2A8AF107A7C8A004F2E4A /* ShiftGearbox.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -316,8 +317,6 @@
 			children = (
 				ABDDB8480DFD94CF00D940FF /* NSWindow.h */,
 				ABDDB8490DFD94CF00D940FF /* NSWindow.m */,
-				AB2D57EA0E00ACD7003FE881 /* KeyChain.h */,
-				AB2D57EB0E00ACD7003FE881 /* KeyChain.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -344,14 +343,6 @@
 				AB613A7710753630003632B0 /* SQLite.gearbox */,
 			);
 			name = PlugIns;
-			sourceTree = "<group>";
-		};
-		ABA642B70E3BE4C0007702E0 /* Gearbox */ = {
-			isa = PBXGroup;
-			children = (
-				ABA056600E425E8300A791E1 /* Gearbox.h */,
-			);
-			name = Gearbox;
 			sourceTree = "<group>";
 		};
 		ABB7132D0E5B5E9E00E5513E /* XIB */ = {
@@ -445,7 +436,6 @@
 				AB54F5C80DEA0CA400A5B233 /* ShiftOutlineNode.m in Sources */,
 				ABC2410C0DF8BA750099E88E /* PreferenceWindow.m in Sources */,
 				ABDDB84A0DFD94CF00D940FF /* NSWindow.m in Sources */,
-				AB2D57EC0E00ACD7003FE881 /* KeyChain.m in Sources */,
 				43603CFD0E04D59E0024293E /* AboutBoxController.m in Sources */,
 				AB6F68160E11C56700ABD651 /* ConsoleView.m in Sources */,
 				ABA054470E42331200A791E1 /* CenteredTextFieldCell.m in Sources */,

@@ -47,38 +47,28 @@ ShiftDatabaseConnections *sharedDatabaseConnections = nil;
 	[super dealloc];
 }
 
-- (id<Gearbox>)connect:(NSDictionary *)connection
+- (GBServer *)connect:(GBConnection *)connection;
 {
-	id<Gearbox> gearbox = [self gearboxForConnection:connection];
+	GBServer *gearbox = [self gearboxForConnection:connection];
 	if (![gearbox isConnected])
 		[gearbox connect:connection];
 
 	return gearbox;
 }
 
-- (void)disconnect:(id)connection
+- (void)disconnect:(GBConnection *)connection
 {
-	NSString *uuid;
-	if ([connection isKindOfClass:[NSString class]])
-		uuid = connection;
-	else if ([connection isKindOfClass:[NSDictionary class]])
-		uuid = [connection objectForKey:@"uuid"];
-	else {
-		NSLog(@"Shift : Invalid disconnect attempt (%@)", [connection className]);
-	}
-
-	
-	id<Gearbox> gearbox = [connections objectForKey:uuid];
+	id gearbox = [connections objectForKey:connection.uuid];
 	if (gearbox && [gearbox isConnected])
 		[gearbox disconnect];
 }
 
-- (id<Gearbox>)gearboxForConnection:(NSDictionary *)connection
+- (GBServer *)gearboxForConnection:(GBConnection *)connection;
 {
-	id<Gearbox> gearbox = [connections objectForKey:[connection objectForKey:@"uuid"]];
+	GBServer *gearbox = [connections objectForKey:connection.uuid];
 	if (gearbox == nil){
-		gearbox = [(ShiftAppDelegate *)[NSApp delegate] gearboxForType:[connection objectForKey:@"type"]];
-		[connections setObject:gearbox forKey:[connection objectForKey:@"uuid"]];
+		gearbox = [(ShiftAppDelegate *)[NSApp delegate] gearboxForType:connection.type];
+		[connections setObject:gearbox forKey:connection.uuid];
 	}
 	
 	return gearbox;

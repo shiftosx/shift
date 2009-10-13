@@ -49,16 +49,6 @@
 
 -(void)awakeFromNib
 {
-	//check for old favorites
-	for (NSMutableDictionary *favorite in favorites){
-		if ([favorite objectForKey:@"type"] == nil)
-			[favorite setObject:@"MySQL" forKey:@"type"];
-		if ([favorite objectForKey:@"uuid"] == nil)
-			[favorite setObject:[[NSProcessInfo processInfo] globallyUniqueString] forKey:@"uuid"];
-	}
-	[prefs setObject:favorites forKey:@"favorites"];
-	[prefs synchronize];
-	
 	//console
 	if ([prefs boolForKey:@"ConsoleOpen"]){
 		//[contentSplitView addSubview:consoleView];
@@ -66,7 +56,12 @@
 	}	
 
 	//source view
-	[serverOutline reloadServerList:[prefs objectForKey:@"favorites"]];
+	NSMutableArray *connections = [NSMutableArray array];
+	for (NSDictionary *connectionDictionary in [prefs objectForKey:@"favorites"]) {
+		id gearbox = [[NSApp delegate] gearboxForType:[connectionDictionary objectForKey:@"type"]];
+		[connections addObject:[gearbox createConnection:connectionDictionary]];
+	}
+	[serverOutline reloadServerList:connections];
 }
 
 //Menu Item Hooks ------------------------------------------------------------------------------------------------------

@@ -16,7 +16,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "Gearbox.h"
+#import <ShiftGearbox/ShiftGearbox.h>
 
 
 @interface ShiftDatabaseConnections : NSObject {
@@ -27,10 +27,10 @@
 
 + (ShiftDatabaseConnections *) databaseConnections;
 
-- (id<Gearbox>)connect:(NSDictionary *)connection;
-- (void)disconnect:(id)connection;
+- (GBServer *)connect:(GBConnection *)connection;
+- (void)disconnect:(GBConnection *)connection;
 
-- (id<Gearbox>)gearboxForConnection:(NSDictionary *)connection;
+- (GBServer *)gearboxForConnection:(GBConnection *)connection;
 
 
 @end

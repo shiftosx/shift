@@ -40,7 +40,10 @@
 	if([object isKindOfClass:[NSDictionary class]])
 	{
 		[self setStringValue:[(NSDictionary *)object valueForKey:@"title"]];
-		[self setImage:[NSUnarchiver unarchiveObjectWithData:[(NSDictionary *)object valueForKey:@"image"]]];
+		NSData *imageData = [(NSDictionary *)object valueForKey:@"image"];
+		if (imageData != nil) {
+			[self setImage:[NSUnarchiver unarchiveObjectWithData:imageData]];
+		}
 	}
 	else
 	{

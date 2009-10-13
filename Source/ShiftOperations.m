@@ -15,6 +15,7 @@
  * or see <http://www.gnu.org/licenses/>.
  */
 
+#import <ShiftGearbox/ShiftGearbox.h>
 #import "ShiftOperations.h"
 
 
@@ -45,23 +46,23 @@ ShiftOperations *sharedShiftOperations = nil;
 }
 
 
-- (NSOperationQueue *)queueForConnection:(NSDictionary *)connection
+- (NSOperationQueue *)queueForConnection:(GBConnection *)connection
 {
-	NSOperationQueue *queue = [operations objectForKey:[connection objectForKey:@"uuid"]];
+	NSOperationQueue *queue = [operations objectForKey:connection.uuid];
 	if (!queue) {
 		queue = [[NSOperationQueue alloc] init];
-		[queue setName:[NSString stringWithFormat:@"%@ (%@)", [connection objectForKey:@"name"], [connection objectForKey:@"uuid"]]];
+		[queue setName:[NSString stringWithFormat:@"%@ (%@)", connection.name, connection.uuid]];
 		//[queue setMaxConcurrentOperationCount:1];
-		[operations setObject:queue forKey:[connection objectForKey:@"uuid"]];
+		[operations setObject:queue forKey:connection.uuid];
 	}
 	return queue;
 }
 
-- (NSInvocationOperation *)addInvocation:(NSInvocation *)invocation withCompletionBlock:(void (^)(void))block forConnection:(NSDictionary *)connection
+- (NSInvocationOperation *)addInvocation:(NSInvocation *)invocation withCompletionBlock:(void (^)(void))block forConnection:(GBConnection *)connection
 {
 	NSOperationQueue *queue = [self queueForConnection:connection];
 	if ([queue operationCount] < 1) {
-		NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithInvocation:invocation];
+		NSInvocationOperation *operation = [[[NSInvocationOperation alloc] initWithInvocation:invocation] autorelease];
 		[operation setCompletionBlock:block];
 		[[self queueForConnection:connection] addOperation:operation];
 		return operation;

@@ -16,7 +16,7 @@
  */
 
 #import "ShiftAppDelegate.h"
-#import "Gearbox.h"
+#import <ShiftGearbox/ShiftGearbox.h>
 
 
 @implementation ShiftAppDelegate
@@ -44,9 +44,7 @@
 	NSString *pluginPath = [[NSBundle mainBundle] builtInPlugInsPath];
 	for(NSString *bundlePath in [[NSFileManager defaultManager] contentsOfDirectoryAtPath:pluginPath error:NULL]){
 		NSBundle *bundle = [NSBundle bundleWithPath:[pluginPath stringByAppendingPathComponent:bundlePath]];
-		if ([[bundle principalClass] conformsToProtocol:@protocol(Gearbox)]){
-			[bundleDictionary setObject:bundle forKey:[[bundlePath componentsSeparatedByString:@"."] objectAtIndex:0]];
-		}
+		[bundleDictionary setObject:bundle forKey:[[bundlePath componentsSeparatedByString:@"."] objectAtIndex:0]];
 	}
 	gearboxes = [[NSDictionary dictionaryWithDictionary:bundleDictionary] retain];
 	[bundleDictionary release];
@@ -55,7 +53,7 @@
 - (id)gearboxForType:(NSString *)type
 {
 	NSBundle *bundle = [[self gearboxes] objectForKey:type];
-	id gearbox = [[[bundle principalClass] alloc] init];
+	id gearbox = [[[[bundle principalClass] alloc] init] autorelease];
 	[[NSNotificationCenter defaultCenter] addObserver:[self errorHandler] selector:@selector(invalidQuery:) name:GBNotificationInvalidQuery object:gearbox];
 	[[NSNotificationCenter defaultCenter] addObserver:[self errorHandler] selector:@selector(connectionFailed:) name:GBNotificationConnectionFailed object:gearbox];
 	return gearbox;
